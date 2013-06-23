@@ -1,0 +1,70 @@
+<Tasks>
+	<GlobalSettings>
+		<RenderingOptions>
+			<UseMultithreading value="true" />
+			<Dither value="true" />
+			<Progressive value="true" />
+			<OptimizeBlurs value="true" />
+			<AntiAliasBitmapComponentSources value="false" />
+			<Jitter value="0" />
+			<TemporaryFilesLocation value="" />
+			<RAMUsageLimit value="60" />
+			<NormalMapFlipY value="false" />
+		</RenderingOptions>
+		<BitmapFormatOptions>
+			<DefaultFormat value="JPG" />
+			<BMP>
+				<BitDepth value="32" />
+				<FlipRowOrder value="false" />
+			</BMP>
+			<JPG>
+				<Quality value="98" />
+				<FullPrecision value="true" />
+			</JPG>
+			<TIF>
+				<BitDepth value="8" />
+				<FloatFormat value="false" />
+				<IncludeTransparency value="true" />
+				<ImageCompression value="LZW" />
+			</TIF>
+			<TGA>
+				<BitDepth value="32" />
+				<IncludeTransparency value="true" />
+				<FlipRowOrder value="false" />
+			</TGA>
+			<PNG>
+				<BitDepth value="16" />
+				<IncludeTransparency value="true" />
+				<ImageCompression value="BEST" />
+			</PNG>
+			<EXR>
+				<BitDepth value="32" />
+				<IncludeTransparency value="true" />
+				<ImageCompression value="PIZ" />
+				<FlipRowOrder value="false" />
+			</EXR>
+			<PFM />
+		</BitmapFormatOptions>
+	</GlobalSettings>
+    <Task> 
+        <Image value="" width="256" height="256"/> 
+        <Selection value=""/> 
+        <Result path="U:\test\ff\pcloud\Pcloud1.jpg" format="JPG"/> 
+        <Filter value="U:\test\ff\Perlin clouds.ffxml"/> 
+        <Preset value="1"/> 
+    </Task> 
+    <Task> 
+        <Image value="" width="256" height="256"/> 
+        <Selection value=""/> 
+        <Result path="U:\test\ff\pcloud\Pcloud2.jpg" format="JPG"/> 
+        <Filter value="U:\test\ff\Perlin clouds.ffxml"/> 
+        <Preset value="2"/> 
+    </Task> 
+    <Task> 
+        <Image value="" width="256" height="256"/> 
+        <Selection value=""/> 
+        <Result path="U:\test\ff\pcloud\Pcloud3.jpg" format="JPG"/> 
+        <Filter value="U:\test\ff\Perlin clouds.ffxml"/> 
+        <Preset value="3"/> 
+    </Task>
+</Tasks>

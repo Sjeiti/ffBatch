@@ -1,0 +1,2578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Filter>
+	<Components>
+		<Result id="result">
+			<SurfaceColor source="setalpha 01" red="0.748062015503876" green="0.626566527237939" blue="0.397226729162911" alpha="1"/>
+			<Height source="blend4 18"/>
+			<Reflectivity value="0.5"/>
+			<ReflectionBlur value="0.32"/>
+			<Metallic value="0.35"/>
+			<FilterType value="1"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value="Entrance, Day"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="341"/>
+				</Environment>
+			</Lighting>
+		</Result>
+		<AngleControl id="anglecontrol 01">
+			<Name value-en="Rotation"/>
+			<UseRemapping value="true"/>
+			<Value value="36.1392869968616"/>
+		</AngleControl>
+		<AssembleHLS id="assemblehls 01">
+			<H value="0"/>
+			<L source="blend4 08" value="0.5"/>
+			<S value="0"/>
+		</AssembleHLS>
+		<AssembleRGB id="assemblergb 01">
+			<R value="0"/>
+			<G value="2.55"/>
+			<B value="2.55"/>
+		</AssembleRGB>
+		<BiasCurve id="biascurve 01">
+			<Bias source="slidercontrol 05" value="0.96">
+				<Minimum value="-0.95"/>
+				<Maximum value="0.95"/>
+			</Bias>
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Invert value="false"/>
+		</BiasCurve>
+		<BiasCurve id="biascurve 02">
+			<Bias value="0.826"/>
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum value="0.0477"/>
+			<Maximum value="0.5"/>
+			<Invert value="true"/>
+		</BiasCurve>
+		<BiasCurve id="biascurve 03">
+			<Bias source="slidercontrol 05" value="0.96">
+				<Minimum value="0.95"/>
+				<Maximum value="-0.95"/>
+			</Bias>
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Invert value="false"/>
+		</BiasCurve>
+		<Blend4 id="blend4 01">
+			<Mode value="0"/>
+			<Foreground source="tonecurve 13" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="tonecurve 02" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity source="slidercontrol 01" value="0.96">
+				<Minimum value="1"/>
+				<Maximum value="0.96"/>
+			</Opacity>
+		</Blend4>
+		<Blend4 id="blend4 02">
+			<Mode value="2"/>
+			<Foreground source="tonecurve 01" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="offset 01" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="1"/>
+		</Blend4>
+		<Blend4 id="blend4 03">
+			<Mode value="2"/>
+			<Foreground source="invert 13" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="invert 10" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity source="slidercontrol 12" value="0.0005">
+				<Minimum value="0.0005"/>
+				<Maximum value="0.01"/>
+			</Opacity>
+		</Blend4>
+		<Blend4 id="blend4 04">
+			<Mode value="14"/>
+			<Foreground source="threshold 02" red="0" green="0" blue="0" alpha="1"/>
+			<Background source="threshold 03" red="0.5" green="0.5" blue="0.5" alpha="1"/>
+			<Opacity value="1"/>
+		</Blend4>
+		<Blend4 id="blend4 05">
+			<Mode value="14"/>
+			<Foreground source="gamma 01" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="brightnesscontrast 02" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="1"/>
+		</Blend4>
+		<Blend4 id="blend4 07">
+			<Mode value="14"/>
+			<Foreground source="tonecurve 01" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="offset 01" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="1"/>
+		</Blend4>
+		<Blend4 id="blend4 08">
+			<Mode value="0"/>
+			<Foreground source="tonecurve 06" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="invert 10" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="0.02"/>
+		</Blend4>
+		<Blend4 id="blend4 09">
+			<Mode value="14"/>
+			<Foreground source="tonecurve 03" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="switch2 02" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="1"/>
+		</Blend4>
+		<Blend4 id="blend4 10">
+			<Mode value="2"/>
+			<Foreground source="offset 01" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="elevationgradient 02" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="1"/>
+		</Blend4>
+		<Blend4 id="blend4 11">
+			<Mode value="0"/>
+			<Foreground source="profilegradient 01" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="profilegradient 02" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="0.5"/>
+		</Blend4>
+		<Blend4 id="blend4 12">
+			<Mode value="0"/>
+			<Foreground source="tonecurve 14" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="blend4 01" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity source="profilegradient 07" value="0.33333333"/>
+		</Blend4>
+		<Blend4 id="blend4 14">
+			<Mode value="2"/>
+			<Foreground source="gamma 01" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="brightnesscontrast 03" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="0"/>
+		</Blend4>
+		<Blend4 id="blend4 15">
+			<Mode value="0"/>
+			<Foreground source="profilegradient 04" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="profilegradient 06" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="0.5"/>
+		</Blend4>
+		<Blend4 id="blend4 17">
+			<Mode value="0"/>
+			<Foreground source="blend4 15" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="profilegradient 09" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="0.5"/>
+		</Blend4>
+		<Blend4 id="blend4 18">
+			<Mode value="0"/>
+			<Foreground source="invert 04" red="0" green="0" blue="0" alpha="1"/>
+			<Background source="blend4 19" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity source="tonecurve 10" value="0.43"/>
+		</Blend4>
+		<Blend4 id="blend4 19">
+			<Mode value="2"/>
+			<Foreground source="offset 20" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="blend4 14" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity source="tonecurve 11" value="0.02"/>
+		</Blend4>
+		<Blend4 id="blend4 20">
+			<Mode value="14"/>
+			<Foreground source="blend4 04" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="blend4 05" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="1"/>
+		</Blend4>
+		<Blend4 id="blend4 21">
+			<Mode value="0"/>
+			<Foreground source="profilegradient 10" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="profilegradient 11" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="0.5"/>
+		</Blend4>
+		<Blend4 id="blend4 22">
+			<Mode value="0"/>
+			<Foreground source="profilegradient 12" red="1" green="1" blue="1" alpha="1"/>
+			<Background source="blend4 21" red="0" green="0" blue="0" alpha="1"/>
+			<Opacity value="0.5"/>
+		</Blend4>
+		<Blend4 id="blend4 37">
+			<Mode value="0"/>
+			<Foreground red="0" green="0" blue="0" alpha="1"/>
+			<Background red="0.5" green="0.5" blue="0.5" alpha="1"/>
+			<Opacity source="kaleidoscope 02" value="0.5"/>
+		</Blend4>
+		<Blocks id="blocks 01">
+			<Noise red="1" green="1" blue="1" alpha="1"/>
+			<Background red="0" green="0" blue="0" alpha="1"/>
+			<Roughness source="slidercontrol 07" value="0">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Roughness>
+			<Contrast source="slidercontrol 11" value="0.25">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Contrast>
+			<Formula value="0"/>
+			<Scale source="slidercontrol 02" value="2.5">
+				<Minimum value="0"/>
+				<Maximum value="3"/>
+			</Scale>
+			<Stretch value="0"/>
+			<VerticalStretch value="false"/>
+			<Flat value="false"/>
+			<SolidFill value="false"/>
+			<Details source="slidercontrol 07" value="0">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Details>
+			<Variation value="1"/>
+			<OctaveCurve value="0"/>
+		</Blocks>
+		<BrightnessContrast id="brightnesscontrast 02">
+			<Source source="offset 20"/>
+			<Brightness value="0"/>
+			<Contrast source="slidercontrol 08" value="0.5">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Contrast>
+			<PreserveColor value="false"/>
+		</BrightnessContrast>
+		<BrightnessContrast id="brightnesscontrast 03">
+			<Source source="tonecurve 05"/>
+			<Brightness value="0"/>
+			<Contrast source="blend4 37" value="0"/>
+			<PreserveColor value="false"/>
+		</BrightnessContrast>
+		<Cells id="cells 01">
+			<Noise red="1" green="1" blue="1" alpha="1"/>
+			<Background red="0" green="0" blue="0" alpha="1"/>
+			<Roughness source="slidercontrol 07" value="0.2">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Roughness>
+			<Contrast source="slidercontrol 11" value="0.25">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Contrast>
+			<Formula value="0"/>
+			<Scale source="slidercontrol 02" value="2.2">
+				<Minimum value="0"/>
+				<Maximum value="3"/>
+			</Scale>
+			<Stretch value="0"/>
+			<VerticalStretch value="false"/>
+			<Smooth value="false"/>
+			<Flat value="false"/>
+			<SolidFill value="false"/>
+			<Details source="slidercontrol 07" value="0.4">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Details>
+			<Variation value="1"/>
+			<OctaveCurve value="0"/>
+		</Cells>
+		<Chaffs id="chaffs 01">
+			<Noise red="1" green="1" blue="1" alpha="1"/>
+			<Background red="0" green="0" blue="0" alpha="1"/>
+			<Roughness source="slidercontrol 07" value="0">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Roughness>
+			<Contrast source="slidercontrol 11" value="0.25">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Contrast>
+			<Formula value="0"/>
+			<Scale source="slidercontrol 02" value="2">
+				<Minimum value="0"/>
+				<Maximum value="3"/>
+			</Scale>
+			<Stretch value="0"/>
+			<VerticalStretch value="false"/>
+			<Smooth value="false"/>
+			<Flat value="false"/>
+			<SolidFill value="false"/>
+			<Details source="slidercontrol 07" value="0">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Details>
+			<Variation value="1"/>
+			<OctaveCurve value="0"/>
+		</Chaffs>
+		<CheckboxControl id="checkboxcontrol 01">
+			<Name value-en="Invert Pattern"/>
+			<UseRemapping value="false"/>
+			<Checked value="false"/>
+		</CheckboxControl>
+		<CheckboxControl id="checkboxcontrol 02">
+			<Name value-en="Pattern curve"/>
+			<UseRemapping value="true"/>
+			<Checked value="false"/>
+		</CheckboxControl>
+		<CircularArcCurve id="circulararccurve 01">
+			<Sector value="0.9"/>
+			<Start value="0"/>
+			<End value="0.5"/>
+			<Minimum value="0"/>
+			<Maximum value="0.5"/>
+			<Invert value="false"/>
+		</CircularArcCurve>
+		<CircularArcCurve id="circulararccurve 02">
+			<Sector value="-0.9"/>
+			<Start value="0.5"/>
+			<End value="1"/>
+			<Minimum value="0"/>
+			<Maximum value="0.5"/>
+			<Invert value="false"/>
+		</CircularArcCurve>
+		<CircularArcCurve id="circulararccurve 04">
+			<Sector value="0.9"/>
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Invert value="false"/>
+		</CircularArcCurve>
+		<CircularArcCurve id="circulararccurve 05">
+			<Sector value="-0.9"/>
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Invert value="false"/>
+		</CircularArcCurve>
+		<CircularArcCurve id="circulararccurve 06">
+			<Sector value="0.9"/>
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum value="0"/>
+			<Maximum source="slidercontrol 09" value="1">
+				<Minimum value="0.04"/>
+				<Maximum value="0"/>
+			</Maximum>
+			<Invert value="true"/>
+		</CircularArcCurve>
+		<ColorControl id="colorcontrol 03">
+			<Name value-en="Color II"/>
+			<UseRemapping value="false"/>
+			<Color red="1" green="0.817120622568093" blue="0" alpha="1"/>
+		</ColorControl>
+		<ColorControl id="colorcontrol 04">
+			<Name value-en="Color I"/>
+			<UseRemapping value="false"/>
+			<Color red="0.166155880055285" green="0.213019411761818" blue="0.306201550387597" alpha="1"/>
+		</ColorControl>
+		<ElevationGradient id="elevationgradient 02">
+			<Elevation source="extracthsy 02"/>
+			<Gradient source="noisegradient 01"/>
+			<Flip value="false"/>
+			<Repeat value="1"/>
+		</ElevationGradient>
+		<ElevationGradient id="elevationgradient 04">
+			<Elevation source="blend4 20"/>
+			<Gradient source="profilegradient 08"/>
+			<Flip value="false"/>
+			<Repeat value="1"/>
+		</ElevationGradient>
+		<ExtractHSY id="extracthsy 02">
+			<Source source="blend4 11" red="0.364705882352941" green="0.0627450980392157" blue="0.705882352941177" alpha="1"/>
+			<Channel value="0"/>
+			<Invert value="false"/>
+		</ExtractHSY>
+		<Gamma id="gamma 01">
+			<Source source="tonecurve 07"/>
+			<Gamma value="-0.2"/>
+		</Gamma>
+		<IntSliderControl id="intslidercontrol 01">
+			<Name value-en="Noise type"/>
+			<UseRemapping value="false"/>
+			<Value value="3"/>
+			<RangeMax value="7"/>
+		</IntSliderControl>
+		<IntSliderControl id="intslidercontrol 02">
+			<Name value-en="Pattern type"/>
+			<UseRemapping value="false"/>
+			<Value value="3"/>
+			<RangeMax value="7"/>
+		</IntSliderControl>
+		<IntSliderControl id="intslidercontrol 03">
+			<Name value-en="Rib spacing"/>
+			<UseRemapping value="true"/>
+			<Value value="39"/>
+			<RangeMax value="100"/>
+		</IntSliderControl>
+		<IntSliderControl id="intslidercontrol 04">
+			<Name value-en="Pattern repeat"/>
+			<UseRemapping value="true"/>
+			<Value value="6"/>
+			<RangeMax value="8"/>
+		</IntSliderControl>
+		<Invert id="invert 01">
+			<Source source="blend4 09"/>
+			<Invert source="checkboxcontrol 01" value="true">
+				<Invert value="false"/>
+			</Invert>
+		</Invert>
+		<Invert id="invert 04">
+			<Source source="tonecurve 10"/>
+			<Invert value="true"/>
+		</Invert>
+		<Invert id="invert 07">
+			<Source source="tonecurve 09"/>
+			<Invert value="true"/>
+		</Invert>
+		<Invert id="invert 09">
+			<Source source="threshold 03"/>
+			<Invert value="true"/>
+		</Invert>
+		<Invert id="invert 10">
+			<Source source="tonecurve 15"/>
+			<Invert value="true"/>
+		</Invert>
+		<Invert id="invert 13">
+			<Source source="tonecurve 05"/>
+			<Invert value="true"/>
+		</Invert>
+		<Invert id="invert 14">
+			<Source source="tonecurve 04"/>
+			<Invert value="true"/>
+		</Invert>
+		<Kaleidoscope id="kaleidoscope 02">
+			<Mode value="0"/>
+			<Source source="tiles 02"/>
+			<OffsetH value="0"/>
+			<OffsetV value="0"/>
+			<ShapeSize value="0.25"/>
+			<RepeatH value="1"/>
+			<RepeatV value="1"/>
+		</Kaleidoscope>
+		<Levels id="levels 01">
+			<Source source="blend4 17"/>
+			<BlackPoint value="0.25"/>
+			<Gamma value="0"/>
+			<WhitePoint value="0.75"/>
+			<PreserveColor value="false"/>
+		</Levels>
+		<Levels id="levels 02">
+			<Source source="blend4 22"/>
+			<BlackPoint value="0.25"/>
+			<Gamma value="0"/>
+			<WhitePoint value="0.75"/>
+			<PreserveColor value="false"/>
+		</Levels>
+		<LinearCurve id="linearcurve 01">
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum value="0"/>
+			<Maximum source="slidercontrol 11" value="0.52">
+				<Minimum value="0.25"/>
+				<Maximum value="1"/>
+			</Maximum>
+			<Invert value="false"/>
+		</LinearCurve>
+		<LinearCurve id="linearcurve 02">
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Invert value="false"/>
+		</LinearCurve>
+		<LinearCurve id="linearcurve 05">
+			<Start value="0"/>
+			<End source="slidercontrol 03" value="0.39">
+				<Minimum value="0.0247"/>
+				<Maximum value="0.95"/>
+			</End>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Invert value="false"/>
+		</LinearCurve>
+		<LinearCurve id="linearcurve 06">
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Invert value="true"/>
+		</LinearCurve>
+		<LinearCurve id="linearcurve 10">
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Invert value="false"/>
+		</LinearCurve>
+		<LinearCurve id="linearcurve 11">
+			<Start value="0"/>
+			<End value="1"/>
+			<Minimum source="slidercontrol 10" value="1">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Minimum>
+			<Maximum source="slidercontrol 10" value="1">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Maximum>
+			<Invert value="false"/>
+		</LinearCurve>
+		<MathCurve id="mathcurve 05">
+			<Operation value="0"/>
+			<SourceA source="circulararccurve 02"/>
+			<SourceB source="circulararccurve 01"/>
+		</MathCurve>
+		<NoiseGradient id="noisegradient 01">
+			<BaseColor red="0.5" green="0.5" blue="0.5" alpha="1"/>
+			<HRange value="0"/>
+			<LRange value="1"/>
+			<SRange value="0"/>
+			<Roughness value="0"/>
+			<Scale source="intslidercontrol 04" value="1.41">
+				<Minimum value="2.5"/>
+				<Maximum value="0"/>
+			</Scale>
+			<Vertical value="true"/>
+			<Details value="0"/>
+			<Contrast value="0.3"/>
+			<Variation value="1"/>
+			<Randomizable value="true"/>
+		</NoiseGradient>
+		<Offset id="offset 01">
+			<Source source="tonecurve 08"/>
+			<OffsetH source="profilegradient 13" value="0.2"/>
+			<OffsetV value="0"/>
+			<Percentage value="1"/>
+		</Offset>
+		<Offset id="offset 20">
+			<Source source="invert 01"/>
+			<OffsetH source="levels 02" value="-0.6"/>
+			<OffsetV source="levels 01" value="-0.8"/>
+			<Percentage value="1"/>
+		</Offset>
+		<PerlinNoise id="perlinnoise 01">
+			<Noise red="1" green="1" blue="1" alpha="1"/>
+			<Background red="0" green="0" blue="0" alpha="1"/>
+			<Roughness source="slidercontrol 07" value="0">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Roughness>
+			<Scale source="slidercontrol 02" value="2.04">
+				<Minimum value="0"/>
+				<Maximum value="3"/>
+			</Scale>
+			<Stretch value="0"/>
+			<Angle value="0"/>
+			<Details source="slidercontrol 07" value="0">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Details>
+			<Contrast source="slidercontrol 11" value="0.25">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Contrast>
+			<Variation value="2196"/>
+			<OctaveCurve value="0"/>
+		</PerlinNoise>
+		<PhaseCurve id="phasecurve 01">
+			<Phase source="anglecontrol 01" value="0.5">
+				<Minimum value="0"/>
+				<Maximum value="0.5"/>
+			</Phase>
+			<PhaseMax value="0.02"/>
+			<Source source="repeatcurve 01"/>
+		</PhaseCurve>
+		<PhaseCurve id="phasecurve 02">
+			<Phase source="blend4 01" value="0.5"/>
+			<PhaseMax source="slidercontrol 10" value="0.02">
+				<Minimum value="0.005"/>
+				<Maximum value="0.1"/>
+			</PhaseMax>
+			<Source source="phasecurve 01"/>
+		</PhaseCurve>
+		<ProfileGradient id="profilegradient 01">
+			<Color1 red="1" green="0.25" blue="0.25" alpha="1"/>
+			<Color2 red="0" green="0.75" blue="0.75" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="1"/>
+			<Repeat value="1"/>
+			<Profile value="0"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<ProfileGradient id="profilegradient 02">
+			<Color1 red="0.5" green="0" blue="1" alpha="1"/>
+			<Color2 red="0.5" green="1" blue="0" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="0"/>
+			<Repeat value="1"/>
+			<Profile source="transitioncurve 01" value="0"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<ProfileGradient id="profilegradient 04">
+			<Color1 source="invert 07" red="0" green="0" blue="0" alpha="1"/>
+			<Color2 source="tonecurve 09" red="1" green="1" blue="1" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="2"/>
+			<Repeat value="1"/>
+			<Profile value="0"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<ProfileGradient id="profilegradient 06">
+			<Color1 source="invert 14" red="0" green="0" blue="0" alpha="1"/>
+			<Color2 source="tonecurve 04" red="1" green="1" blue="1" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="3"/>
+			<Repeat value="1"/>
+			<Profile value="0"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<ProfileGradient id="profilegradient 07">
+			<Color1 red="0" green="0" blue="0" alpha="1"/>
+			<Color2 red="1" green="1" blue="1" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="0"/>
+			<Repeat value="1"/>
+			<Profile source="remapamplitudecurve 01" value="0"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<ProfileGradient id="profilegradient 08">
+			<Color1 source="colorcontrol 04" red="0" green="0" blue="0" alpha="1"/>
+			<Color2 source="colorcontrol 03" red="1" green="1" blue="1" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="2"/>
+			<Repeat value="1"/>
+			<Profile value="1"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<ProfileGradient id="profilegradient 09">
+			<Color1 red="0.25" green="0.25" blue="0.25" alpha="1"/>
+			<Color2 red="0.75" green="0.75" blue="0.75" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="1"/>
+			<Repeat value="1"/>
+			<Profile value="0"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<ProfileGradient id="profilegradient 10">
+			<Color1 source="invert 07" red="0" green="0" blue="0" alpha="1"/>
+			<Color2 source="tonecurve 09" red="1" green="1" blue="1" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="1"/>
+			<Repeat value="1"/>
+			<Profile value="0"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<ProfileGradient id="profilegradient 11">
+			<Color1 source="invert 14" red="0" green="0" blue="0" alpha="1"/>
+			<Color2 source="tonecurve 04" red="1" green="1" blue="1" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="2"/>
+			<Repeat value="1"/>
+			<Profile value="0"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<ProfileGradient id="profilegradient 12">
+			<Color1 red="0.25" green="0.25" blue="0.25" alpha="1"/>
+			<Color2 red="0.75" green="0.75" blue="0.75" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="0"/>
+			<Repeat value="1"/>
+			<Profile value="0"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<ProfileGradient id="profilegradient 13">
+			<Color1 red="0" green="0" blue="0" alpha="1"/>
+			<Color2 red="1" green="1" blue="1" alpha="1"/>
+			<Offset value="0"/>
+			<Rotate value="0"/>
+			<Repeat value="1"/>
+			<Profile value="0"/>
+			<Mirror value="false"/>
+		</ProfileGradient>
+		<RemapAmplitudeCurve id="remapamplitudecurve 01">
+			<Source source="linearcurve 11"/>
+			<Remap source="biascurve 02"/>
+		</RemapAmplitudeCurve>
+		<RepeatCurve id="repeatcurve 01">
+			<Repeat value="0.01"/>
+			<Mirror value="false"/>
+			<Source source="linearcurve 10"/>
+		</RepeatCurve>
+		<RepeatCurve id="repeatcurve 02">
+			<Repeat value="0.02"/>
+			<Mirror value="true"/>
+			<Source source="circulararccurve 04"/>
+		</RepeatCurve>
+		<RepeatCurve id="repeatcurve 05">
+			<Repeat source="intslidercontrol 04" value="0.05">
+				<Minimum value="0.01"/>
+				<Maximum value="0.08"/>
+			</Repeat>
+			<Mirror value="false"/>
+			<Source source="wavecurve 03"/>
+		</RepeatCurve>
+		<RepeatCurve id="repeatcurve 06">
+			<Repeat source="intslidercontrol 04" value="0.05">
+				<Minimum value="0.01"/>
+				<Maximum value="0.64"/>
+			</Repeat>
+			<Mirror value="false"/>
+			<Source source="wavecurve 03"/>
+		</RepeatCurve>
+		<SetAlpha id="setalpha 01">
+			<Source source="elevationgradient 04" red="1" green="0" blue="0" alpha="1"/>
+			<NewAlpha source="invert 09" value="1.275"/>
+			<InvertAlpha value="false"/>
+		</SetAlpha>
+		<SliderControl id="slidercontrol 01">
+			<Name value-en="Ribbed shell"/>
+			<UseRemapping value="true"/>
+			<Value value="0.1"/>
+		</SliderControl>
+		<SliderControl id="slidercontrol 02">
+			<Name value-en="Noise scale"/>
+			<UseRemapping value="true"/>
+			<Value value="0.57"/>
+		</SliderControl>
+		<SliderControl id="slidercontrol 03">
+			<Name value-en="Shell end"/>
+			<UseRemapping value="true"/>
+			<Value value="0.57"/>
+		</SliderControl>
+		<SliderControl id="slidercontrol 05">
+			<Name value-en="Swirl spacing"/>
+			<UseRemapping value="true"/>
+			<Value value="0.14"/>
+		</SliderControl>
+		<SliderControl id="slidercontrol 06">
+			<Name value-en="End edge width"/>
+			<UseRemapping value="true"/>
+			<Value value="0.24"/>
+		</SliderControl>
+		<SliderControl id="slidercontrol 07">
+			<Name value-en="Noise details"/>
+			<UseRemapping value="false"/>
+			<Value value="0.57"/>
+		</SliderControl>
+		<SliderControl id="slidercontrol 08">
+			<Name value-en="Pattern contrast"/>
+			<UseRemapping value="true"/>
+			<Value value="0.96"/>
+		</SliderControl>
+		<SliderControl id="slidercontrol 09">
+			<Name value-en="Surface smoothness"/>
+			<UseRemapping value="true"/>
+			<Value value="0.13"/>
+		</SliderControl>
+		<SliderControl id="slidercontrol 10">
+			<Name value-en="Swirl"/>
+			<UseRemapping value="true"/>
+			<Value value="0.32"/>
+		</SliderControl>
+		<SliderControl id="slidercontrol 11">
+			<Name value-en="Noise contrast"/>
+			<UseRemapping value="true"/>
+			<Value value="0.52"/>
+		</SliderControl>
+		<SliderControl id="slidercontrol 12">
+			<Name value-en="End edge curve"/>
+			<UseRemapping value="true"/>
+			<Value value="0.84"/>
+		</SliderControl>
+		<Stones id="stones 01">
+			<Noise red="1" green="1" blue="1" alpha="1"/>
+			<Background red="0" green="0" blue="0" alpha="1"/>
+			<Roughness source="slidercontrol 07" value="0">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Roughness>
+			<Contrast source="slidercontrol 11" value="0.25">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Contrast>
+			<Formula value="0"/>
+			<Scale source="slidercontrol 02" value="2.22">
+				<Minimum value="0"/>
+				<Maximum value="3"/>
+			</Scale>
+			<Stretch value="0"/>
+			<VerticalStretch value="false"/>
+			<Flat value="false"/>
+			<SolidFill value="false"/>
+			<Details source="slidercontrol 07" value="0">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Details>
+			<Variation value="1"/>
+			<OctaveCurve value="0"/>
+		</Stones>
+		<Switch2 id="switch2 01">
+			<Source1 red="0" green="0" blue="0" alpha="1"/>
+			<Source2 source="cells 01" red="1" green="0.772" blue="0.113" alpha="1"/>
+			<Source3 source="perlinnoise 01" red="1" green="1" blue="0.168" alpha="1"/>
+			<Source4 source="stones 01" red="1" green="1" blue="1" alpha="1"/>
+			<Source5 source="blocks 01" red="1" green="1" blue="1" alpha="1"/>
+			<Source6 source="techno 01" red="0" green="0.76" blue="1" alpha="1"/>
+			<Source7 source="chaffs 01" red="0" green="0" blue="0.992" alpha="1"/>
+			<Source8 red="0.996" green="0" blue="0.988" alpha="1"/>
+			<Source9 red="0" green="0" blue="0" alpha="1"/>
+			<Source10 red="0.5" green="0.5" blue="0.5" alpha="1"/>
+			<Source11 red="0.741" green="0.741" blue="0.741" alpha="1"/>
+			<Source12 red="1" green="1" blue="1" alpha="1"/>
+			<Selector source="intslidercontrol 01" value="1">
+				<Step value="1"/>
+			</Selector>
+		</Switch2>
+		<Switch2 id="switch2 02">
+			<Source1 red="0" green="0" blue="0" alpha="1"/>
+			<Source2 source="tonecurve 01" red="1" green="0.772" blue="0.113" alpha="1"/>
+			<Source3 source="elevationgradient 02" red="1" green="1" blue="0.168" alpha="1"/>
+			<Source4 source="offset 01" red="1" green="1" blue="1" alpha="1"/>
+			<Source5 source="blend4 02" red="1" green="1" blue="1" alpha="1"/>
+			<Source6 source="blend4 07" red="0" green="0.76" blue="1" alpha="1"/>
+			<Source7 source="blend4 10" red="0" green="0" blue="0.992" alpha="1"/>
+			<Source8 red="0.996" green="0" blue="0.988" alpha="1"/>
+			<Source9 red="0" green="0" blue="0" alpha="1"/>
+			<Source10 red="0.5" green="0.5" blue="0.5" alpha="1"/>
+			<Source11 red="0.741" green="0.741" blue="0.741" alpha="1"/>
+			<Source12 red="1" green="1" blue="1" alpha="1"/>
+			<Selector source="intslidercontrol 02" value="1">
+				<Step value="1"/>
+			</Selector>
+		</Switch2>
+		<SwitchCurve2 id="switchcurve2 01">
+			<Source1 source="repeatcurve 02" value="0"/>
+			<Source2 source="mathcurve 05" value="0"/>
+			<Source3 value="0"/>
+			<Source4 value="0"/>
+			<Source5 value="0"/>
+			<Source6 value="0"/>
+			<Source7 value="0"/>
+			<Source8 value="0"/>
+			<Source9 value="0"/>
+			<Source10 value="0"/>
+			<Source11 value="0"/>
+			<Source12 value="0"/>
+			<Selector source="checkboxcontrol 02" value="1">
+				<Checked value="1"/>
+				<Unchecked value="2"/>
+			</Selector>
+		</SwitchCurve2>
+		<Techno id="techno 01">
+			<Noise red="1" green="1" blue="1" alpha="1"/>
+			<Background red="0" green="0" blue="0" alpha="1"/>
+			<Roughness source="slidercontrol 07" value="0">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Roughness>
+			<Contrast source="slidercontrol 11" value="0.25">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Contrast>
+			<Formula value="0"/>
+			<Scale source="slidercontrol 02" value="2.5">
+				<Minimum value="0"/>
+				<Maximum value="3"/>
+			</Scale>
+			<Stretch value="0"/>
+			<VerticalStretch value="false"/>
+			<Flat value="false"/>
+			<SolidFill value="false"/>
+			<Details source="slidercontrol 07" value="0">
+				<Minimum value="0"/>
+				<Maximum value="1"/>
+			</Details>
+			<Variation value="1"/>
+			<OctaveCurve value="0"/>
+		</Techno>
+		<Threshold id="threshold 02">
+			<Source source="tonecurve 07"/>
+			<Threshold source="slidercontrol 06" value="0.998">
+				<Minimum value="1"/>
+				<Maximum value="0.98"/>
+			</Threshold>
+			<Smooth value="1"/>
+			<Low red="0" green="0" blue="0" alpha="1"/>
+			<High red="1" green="1" blue="1" alpha="1"/>
+		</Threshold>
+		<Threshold id="threshold 03">
+			<Source source="tonecurve 07"/>
+			<Threshold value="1"/>
+			<Smooth value="0"/>
+			<Low red="0" green="0" blue="0" alpha="1"/>
+			<High red="1" green="1" blue="1" alpha="1"/>
+		</Threshold>
+		<Tiles id="tiles 02">
+			<Color red="1" green="1" blue="1" alpha="1"/>
+			<Mortar red="0" green="0" blue="0" alpha="1"/>
+			<HRange value="0"/>
+			<LRange value="0"/>
+			<SRange value="0"/>
+			<MortarWidth value="0"/>
+			<BevelWidth value="1"/>
+			<Corners value="1"/>
+			<FillMode value="0"/>
+			<RowShift value="false"/>
+			<RepeatH value="1"/>
+			<RepeatV value="1"/>
+			<Chaos value="0"/>
+			<Variation value="1"/>
+			<Bevel value="0"/>
+		</Tiles>
+		<ToneCurve id="tonecurve 01">
+			<Source source="extracthsy 02"/>
+			<Curve source="repeatcurve 06"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 02">
+			<Source source="extracthsy 02"/>
+			<Curve source="wavecurve 04"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 03">
+			<Source source="switch2 01"/>
+			<Curve source="linearcurve 01"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 04">
+			<Source source="assemblehls 01"/>
+			<Curve source="wavecurve 07"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 05">
+			<Source source="tonecurve 14"/>
+			<Curve source="repeatcurve 02"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 06">
+			<Source source="tonecurve 14"/>
+			<Curve source="switchcurve2 01"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 07">
+			<Source source="blend4 03"/>
+			<Curve source="linearcurve 05"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 08">
+			<Source source="tonecurve 14"/>
+			<Curve source="repeatcurve 05"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 09">
+			<Source source="assemblehls 01"/>
+			<Curve source="wavecurve 05"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 10">
+			<Source source="threshold 02"/>
+			<Curve source="circulararccurve 05"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 11">
+			<Source source="threshold 02"/>
+			<Curve source="circulararccurve 06"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 13">
+			<Source source="kaleidoscope 02"/>
+			<Curve source="biascurve 01"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 14">
+			<Source source="extracthsy 02"/>
+			<Curve source="phasecurve 02"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<ToneCurve id="tonecurve 15">
+			<Source source="blend4 12"/>
+			<Curve source="biascurve 03"/>
+			<PreserveColor value="false"/>
+		</ToneCurve>
+		<TransitionCurve id="transitioncurve 01">
+			<SourceA source="linearcurve 06"/>
+			<SourceB source="linearcurve 02"/>
+			<Transition source="wavecurve 06" value="0"/>
+		</TransitionCurve>
+		<WaveCurve id="wavecurve 03">
+			<Shape value="0"/>
+			<AVariance value="0"/>
+			<FVariance value="0"/>
+			<Phase value="0"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Wave value="0"/>
+			<Frequency value="0.01"/>
+			<Variation value="1"/>
+			<Invert value="false"/>
+			<Randomizable value="true"/>
+		</WaveCurve>
+		<WaveCurve id="wavecurve 04">
+			<Shape value="0"/>
+			<AVariance value="0"/>
+			<FVariance value="0"/>
+			<Phase value="0"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Wave value="0"/>
+			<Frequency source="intslidercontrol 03" value="0.29">
+				<Minimum value="0.01"/>
+				<Maximum value="1"/>
+			</Frequency>
+			<Variation value="1"/>
+			<Invert value="false"/>
+			<Randomizable value="true"/>
+		</WaveCurve>
+		<WaveCurve id="wavecurve 05">
+			<Shape value="0"/>
+			<AVariance value="0"/>
+			<FVariance value="0"/>
+			<Phase value="0"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Wave value="0"/>
+			<Frequency value="0.01"/>
+			<Variation value="1"/>
+			<Invert value="false"/>
+			<Randomizable value="true"/>
+		</WaveCurve>
+		<WaveCurve id="wavecurve 06">
+			<Shape value="0"/>
+			<AVariance value="0"/>
+			<FVariance value="0"/>
+			<Phase source="assemblergb 01" value="0"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Wave value="0"/>
+			<Frequency value="0"/>
+			<Variation value="1"/>
+			<Invert value="false"/>
+			<Randomizable value="false"/>
+		</WaveCurve>
+		<WaveCurve id="wavecurve 07">
+			<Shape value="0"/>
+			<AVariance value="0"/>
+			<FVariance value="0"/>
+			<Phase value="0.5"/>
+			<Minimum value="0"/>
+			<Maximum value="1"/>
+			<Wave value="0"/>
+			<Frequency value="0.01"/>
+			<Variation value="1"/>
+			<Invert value="false"/>
+			<Randomizable value="true"/>
+		</WaveCurve>
+	</Components>
+	<Presets>
+		<DefaultPreset>
+			<Settings size_factor="1" variation="28609" seamless="false" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value="Entrance, Day"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="341"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="36.1392869968616"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="1" green="0.817120622568093" blue="0" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.166155880055285" green="0.213019411761818" blue="0.306201550387597" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="39"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="6"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0.1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.57"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.57"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.14"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.24"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.57"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.96"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.13"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.32"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.52"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.84"/>
+				</SliderControl>
+			</Controls>
+		</DefaultPreset>
+		<Preset>
+			<Settings size_factor="1" variation="14090" seamless="true" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.05"/>
+				<Environment>
+					<Source value="Church"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="0"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="51"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.992248062015504" green="0.966748247554152" blue="0.899945916711736" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.608527131782946" green="0.340716824532348" blue="0.106138453217956" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="43"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="4"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0.07"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.82"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.258"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.07"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.99"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.5"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.31"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.72"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.14"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.64"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.81"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="14090" seamless="true" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.05"/>
+				<Environment>
+					<Source value="Bridge"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="0"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="331"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.271317829457364" green="0.147177626307159" blue="0.109368427378162" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="1" green="0.666410279612705" blue="0.151162790697674" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="6"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="31"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="2"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.49"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.26"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.61"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.89"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.53"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.78"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="28609" seamless="false" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value="Entrance, Day"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="341"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="36.1392869968616"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="1" green="0.987753747775465" blue="0.891472868217054" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.957364341085271" green="0.870083138149482" blue="0.812646475572381" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="7"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="17"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="7"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.82"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.68"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.38"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.66"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.96"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.7"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.3"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.46"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.15"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="14090" seamless="true" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.05"/>
+				<Environment>
+					<Source value="Church"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="0"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="231"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.109368427378162" green="0.174904372188423" blue="0.271317829457364" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="1" green="0.80513075739752" blue="0.151162790697674" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="2"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="1"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="3"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.89"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.73"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.8"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.61"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.81"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.31"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.47"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.04"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.23"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.19"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="3980" seamless="false" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value="Forest"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="341"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="101"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.762839519942423" green="0.992248062015504" blue="0.184604290607536" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.438019394225083" green="0.593023255813953" blue="0.227555435370471" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="2"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="16"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="3"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0.18"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.71"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.24"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.04"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.51"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.13"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.61"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.23"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.7"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="1"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="3980" seamless="false" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value="Forest"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="341"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="272"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0" green="0.894941634241245" blue="1" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.972868217054264" green="0.015083228171384" blue="0.305772835692258" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="2"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="16"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="3"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0.18"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.71"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.33"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.13"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.51"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.13"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.61"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.7"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.13"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="28609" seamless="false" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value="Forest"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="341"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="305"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.414728682170543" green="0.229268540478407" blue="0.0948410552250465" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.988372093023256" green="0.976372582648875" blue="0.854290607535605" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="2"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="16"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="4"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0.1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.67"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.55"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.14"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.24"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.43"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.18"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.7"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.29"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.74"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.84"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="3980" seamless="false" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value="Forest"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="341"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="48"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="1" green="0" blue="0.443579766536965" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.972762645914397" green="1" blue="0" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="2"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="2"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="24"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="3"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.82"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.21"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.04"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.51"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.13"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.61"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.23"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.7"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="1"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="1" seamless="true" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value=""/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="0"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="92"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.461240310077519" green="0.390224077374877" blue="0.241346673877772" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.755813953488372" green="0.706046455510358" blue="0.5390301063638" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="2"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="1"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="4"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.69"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.34"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.19"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.61"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.69"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.78"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.06"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.5"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.19"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="1" seamless="true" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value="Spring"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="0"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="40"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.325581395348837" green="0.151659080275453" blue="0.0479538489273481" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="1" green="0.201550387596899" blue="0.201550387596899" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="9"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="5"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0.73"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.7"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.46"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.35"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.85"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.25"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.32"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.9"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.04"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.72"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.89"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="24434" seamless="true" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value=""/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="0"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="92"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="false"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.373111732145325" green="0.241346673877772" blue="0.461240310077519" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.779069767441861" green="0.97678943082074" blue="1" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="2"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="3"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="1"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="4"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.66"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.66"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.5"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.61"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.38"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.9"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.68"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.04"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.66"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.55"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="28609" seamless="false" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value="Entrance, Day"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="341"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="36.1392869968616"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.253806373701632" green="0.914421330731176" blue="0.845018202949862" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.337209302325581" green="0.0901838831800974" blue="0.217060752157544" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="2"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="6"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="69"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="3"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0.04"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.58"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.64"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.12"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.08"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.19"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.96"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="1"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.7"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.53"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.21"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="14090" seamless="true" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.05"/>
+				<Environment>
+					<Source value="Church"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="0"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="239"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.109368427378162" green="0.271317829457364" blue="0.178685292081323" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.669881617691244" green="0.939816383378263" blue="0.949612403100775" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="2"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="7"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="26"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="7"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0.45"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.82"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.48"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.16"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.61"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.5"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.31"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.86"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.2"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.64"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.19"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+		<Preset>
+			<Settings size_factor="1" variation="28609" seamless="false" antialiasing="2" map_type="0" edges_only="true"/>
+			<Lighting>
+				<Height value="0.2"/>
+				<Environment>
+					<Source value="Entrance, Day"/>
+					<Brightness value="1"/>
+					<Saturation value="1"/>
+					<Rotation value="341"/>
+				</Environment>
+			</Lighting>
+			<Controls>
+				<AngleControl id="anglecontrol 01">
+					<Value value="334"/>
+				</AngleControl>
+				<CheckboxControl id="checkboxcontrol 01">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<CheckboxControl id="checkboxcontrol 02">
+					<Checked value="true"/>
+				</CheckboxControl>
+				<ColorControl id="colorcontrol 03">
+					<Color red="0.465116279069767" green="1" blue="0.868880644285585" alpha="1"/>
+				</ColorControl>
+				<ColorControl id="colorcontrol 04">
+					<Color red="0.178405639626659" green="0.263565891472868" blue="0.0510786611381528" alpha="1"/>
+				</ColorControl>
+				<IntSliderControl id="intslidercontrol 01">
+					<Value value="5"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 02">
+					<Value value="4"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 03">
+					<Value value="52"/>
+				</IntSliderControl>
+				<IntSliderControl id="intslidercontrol 04">
+					<Value value="5"/>
+				</IntSliderControl>
+				<SliderControl id="slidercontrol 01">
+					<Value value="0.04"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 02">
+					<Value value="0.77"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 03">
+					<Value value="0.28"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 05">
+					<Value value="0.12"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 06">
+					<Value value="0.5"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 07">
+					<Value value="0.45"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 08">
+					<Value value="0.2"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 09">
+					<Value value="0.72"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 10">
+					<Value value="0.08"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 11">
+					<Value value="0.67"/>
+				</SliderControl>
+				<SliderControl id="slidercontrol 12">
+					<Value value="0.44"/>
+				</SliderControl>
+			</Controls>
+		</Preset>
+	</Presets>
+	<Information author="Sjeiti" name-en="Ammonite" url="http://www.sjeiti.com/" description-en="Ammonites are fossils that look somewhat like the modern nautilus (although more closely related to squid).[br][br]To bring these old fossils back to life here are a few pointers:[br]- start with &apos;Noise&apos;- and &apos;Pattern type&apos; set to 1[br]- then first adjust to the desired &apos;Swirl&apos; and &apos;Swirl spacing&apos;[br]- when these are satisfactory you can set the &apos;Shell end&apos;[br]- when adjusting both &apos;Noise&apos;- and &apos;Pattern type&apos; it is easier to see the patterns when you set both contrasts to max[br][br]Snippets used in this filter:[br]- Spherify/Un-Spherify uberEDITION v3.1 by uberzev[br]- Any Angle Rotate v1.1 by uberzev[br]- Fast spiral by Sjeiti" keywords-en="spiral swirl sea snail mollusk ammonite nautilus spiral fossil" update_notes-en="- added snippets in description[br]- changed height[br]- changed lip[br]- changed presets" major_version="1" minor_version="12"/>
+	<ControlsOrder>
+		<Automatic value="false"/>
+		<Items>
+			<Item id="colorcontrol 04" order="0"/>
+			<Item id="colorcontrol 03" order="1"/>
+			<Item id="slidercontrol 10" order="2"/>
+			<Item id="slidercontrol 05" order="3"/>
+			<Item id="slidercontrol 01" order="4"/>
+			<Item id="intslidercontrol 03" order="5"/>
+			<Item id="slidercontrol 03" order="6"/>
+			<Item id="anglecontrol 01" order="7"/>
+			<Item id="slidercontrol 06" order="8"/>
+			<Item id="slidercontrol 12" order="9"/>
+			<Item id="slidercontrol 09" order="10"/>
+			<Item id="intslidercontrol 01" order="11"/>
+			<Item id="slidercontrol 02" order="12"/>
+			<Item id="slidercontrol 11" order="13"/>
+			<Item id="slidercontrol 07" order="14"/>
+			<Item id="intslidercontrol 02" order="15"/>
+			<Item id="slidercontrol 08" order="16"/>
+			<Item id="intslidercontrol 04" order="17"/>
+			<Item id="checkboxcontrol 01" order="18"/>
+			<Item id="checkboxcontrol 02" order="19"/>
+		</Items>
+	</ControlsOrder>
+	<FilterEditor>
+		<ThumbnailSize value="1"/>
+		<Canvas left="-1550" top="-6136" zoom_factor="4"/>
+		<Viewport left="182" top="113" zoom_factor="4"/>
+		<Item id="anglecontrol 01">
+			<Position left="7232" top="-1280"/>
+		</Item>
+		<Item id="assemblehls 01">
+			<Position left="5120" top="1376"/>
+		</Item>
+		<Item id="assemblergb 01">
+			<Position left="8816" top="-1648"/>
+		</Item>
+		<Item id="biascurve 01">
+			<Position left="7728" top="-736"/>
+		</Item>
+		<Item id="biascurve 02">
+			<Position left="7600" top="-912"/>
+		</Item>
+		<Item id="biascurve 03">
+			<Position left="6960" top="-880"/>
+		</Item>
+		<Item id="blend4 01">
+			<Position left="7232" top="-640"/>
+		</Item>
+		<Item id="blend4 02">
+			<Position left="4560" top="448"/>
+		</Item>
+		<Item id="blend4 03">
+			<Position left="5504" top="-1728"/>
+		</Item>
+		<Item id="blend4 04">
+			<Position left="2992" top="-2608"/>
+		</Item>
+		<Item id="blend4 05">
+			<Position left="2496" top="-704"/>
+		</Item>
+		<Item id="blend4 07">
+			<Position left="4560" top="592"/>
+		</Item>
+		<Item id="blend4 08">
+			<Position left="5968" top="-1440"/>
+		</Item>
+		<Item id="blend4 09">
+			<Position left="3440" top="-704"/>
+		</Item>
+		<Item id="blend4 10">
+			<Position left="4560" top="736"/>
+		</Item>
+		<Item id="blend4 11">
+			<Position left="7904" top="-1856"/>
+		</Item>
+		<Item id="blend4 12">
+			<Position left="6960" top="-1024"/>
+		</Item>
+		<Item id="blend4 14">
+			<Position left="2816" top="-2032"/>
+		</Item>
+		<Item id="blend4 15">
+			<Position left="4400" top="1440"/>
+		</Item>
+		<Item id="blend4 17">
+			<Position left="4160" top="1552"/>
+		</Item>
+		<Item id="blend4 18">
+			<Position left="2336" top="-2032"/>
+		</Item>
+		<Item id="blend4 19">
+			<Position left="2576" top="-2032"/>
+		</Item>
+		<Item id="blend4 20">
+			<Position left="2256" top="-704"/>
+		</Item>
+		<Item id="blend4 21">
+			<Position left="4400" top="1296"/>
+		</Item>
+		<Item id="blend4 22">
+			<Position left="4160" top="1248"/>
+		</Item>
+		<Item id="blend4 37">
+			<Position left="3312" top="-1984"/>
+		</Item>
+		<Item id="blocks 01">
+			<Position left="4560" top="-880"/>
+		</Item>
+		<Item id="brightnesscontrast 02">
+			<Position left="2736" top="-704"/>
+		</Item>
+		<Item id="brightnesscontrast 03">
+			<Position left="3072" top="-1984"/>
+		</Item>
+		<Item id="cells 01">
+			<Position left="4560" top="-1568"/>
+		</Item>
+		<Item id="chaffs 01">
+			<Position left="4560" top="-400"/>
+		</Item>
+		<Item id="checkboxcontrol 01">
+			<Position left="3232" top="-768"/>
+		</Item>
+		<Item id="checkboxcontrol 02">
+			<Position left="6224" top="-1728"/>
+		</Item>
+		<Item id="circulararccurve 01">
+			<Position left="6656" top="-1584"/>
+		</Item>
+		<Item id="circulararccurve 02">
+			<Position left="6656" top="-1728"/>
+		</Item>
+		<Item id="circulararccurve 04">
+			<Position left="6656" top="-1872"/>
+		</Item>
+		<Item id="circulararccurve 05">
+			<Position left="3232" top="-2816"/>
+		</Item>
+		<Item id="circulararccurve 06">
+			<Position left="3232" top="-2960"/>
+		</Item>
+		<Item id="colorcontrol 03">
+			<Position left="2704" top="-496"/>
+		</Item>
+		<Item id="colorcontrol 04">
+			<Position left="2704" top="-560"/>
+		</Item>
+		<Item id="elevationgradient 02">
+			<Position left="4560" top="160"/>
+		</Item>
+		<Item id="elevationgradient 04">
+			<Position left="2032" top="-704"/>
+		</Item>
+		<Item id="extracthsy 02">
+			<Position left="7680" top="-1856"/>
+		</Item>
+		<Item id="gamma 01">
+			<Position left="3072" top="-2128"/>
+		</Item>
+		<Item id="intslidercontrol 01">
+			<Position left="4096" top="-1104"/>
+		</Item>
+		<Item id="intslidercontrol 02">
+			<Position left="4144" top="48"/>
+		</Item>
+		<Item id="intslidercontrol 03">
+			<Position left="7472" top="-384"/>
+		</Item>
+		<Item id="intslidercontrol 04">
+			<Position left="5088" top="128"/>
+		</Item>
+		<Item id="invert 01">
+			<Position left="3232" top="-704"/>
+		</Item>
+		<Item id="invert 04">
+			<Position left="2800" top="-2752"/>
+		</Item>
+		<Item id="invert 07">
+			<Position left="4864" top="1296"/>
+		</Item>
+		<Item id="invert 09">
+			<Position left="3072" top="-2272"/>
+		</Item>
+		<Item id="invert 10">
+			<Position left="6512" top="-928"/>
+		</Item>
+		<Item id="invert 13">
+			<Position left="5776" top="-1728"/>
+		</Item>
+		<Item id="invert 14">
+			<Position left="4864" top="1584"/>
+		</Item>
+		<Item id="kaleidoscope 02">
+			<Position left="7680" top="-1696"/>
+		</Item>
+		<Item id="levels 01">
+			<Position left="3936" top="1552"/>
+		</Item>
+		<Item id="levels 02">
+			<Position left="3936" top="1248"/>
+		</Item>
+		<Item id="linearcurve 01">
+			<Position left="4096" top="-784"/>
+		</Item>
+		<Item id="linearcurve 02">
+			<Position left="8560" top="-1792"/>
+		</Item>
+		<Item id="linearcurve 05">
+			<Position left="3744" top="-2272"/>
+		</Item>
+		<Item id="linearcurve 06">
+			<Position left="8560" top="-1936"/>
+		</Item>
+		<Item id="linearcurve 10">
+			<Position left="7664" top="-1216"/>
+		</Item>
+		<Item id="linearcurve 11">
+			<Position left="7600" top="-1056"/>
+		</Item>
+		<Item id="mathcurve 05">
+			<Position left="6432" top="-1584"/>
+		</Item>
+		<Item id="noisegradient 01">
+			<Position left="4784" top="160"/>
+		</Item>
+		<Item id="offset 01">
+			<Position left="4560" top="304"/>
+		</Item>
+		<Item id="offset 20">
+			<Position left="3008" top="-704"/>
+		</Item>
+		<Item id="perlinnoise 01">
+			<Position left="4560" top="-1312"/>
+		</Item>
+		<Item id="phasecurve 01">
+			<Position left="7216" top="-1216"/>
+		</Item>
+		<Item id="phasecurve 02">
+			<Position left="6960" top="-1216"/>
+		</Item>
+		<Item id="profilegradient 01">
+			<Position left="8144" top="-1952"/>
+		</Item>
+		<Item id="profilegradient 02">
+			<Position left="8144" top="-1808"/>
+		</Item>
+		<Item id="profilegradient 04">
+			<Position left="4640" top="1440"/>
+		</Item>
+		<Item id="profilegradient 06">
+			<Position left="4640" top="1584"/>
+		</Item>
+		<Item id="profilegradient 07">
+			<Position left="7200" top="-1024"/>
+		</Item>
+		<Item id="profilegradient 08">
+			<Position left="2496" top="-560"/>
+		</Item>
+		<Item id="profilegradient 09">
+			<Position left="4400" top="1584"/>
+		</Item>
+		<Item id="profilegradient 10">
+			<Position left="4640" top="1152"/>
+		</Item>
+		<Item id="profilegradient 11">
+			<Position left="4640" top="1296"/>
+		</Item>
+		<Item id="profilegradient 12">
+			<Position left="4400" top="1152"/>
+		</Item>
+		<Item id="profilegradient 13">
+			<Position left="4784" top="368"/>
+		</Item>
+		<Item id="remapamplitudecurve 01">
+			<Position left="7392" top="-1024"/>
+		</Item>
+		<Item id="repeatcurve 01">
+			<Position left="7472" top="-1216"/>
+		</Item>
+		<Item id="repeatcurve 02">
+			<Position left="6432" top="-1728"/>
+		</Item>
+		<Item id="repeatcurve 05">
+			<Position left="5232" top="368"/>
+		</Item>
+		<Item id="repeatcurve 06">
+			<Position left="4784" top="16"/>
+		</Item>
+		<Item id="result">
+			<Position left="1520" top="-992"/>
+		</Item>
+		<Item id="setalpha 01">
+			<Position left="1792" top="-704"/>
+		</Item>
+		<Item id="slidercontrol 01">
+			<Position left="7472" top="-448"/>
+		</Item>
+		<Item id="slidercontrol 02">
+			<Position left="5184" top="-1040"/>
+		</Item>
+		<Item id="slidercontrol 03">
+			<Position left="4032" top="-2272"/>
+		</Item>
+		<Item id="slidercontrol 05">
+			<Position left="8128" top="-1024"/>
+		</Item>
+		<Item id="slidercontrol 06">
+			<Position left="3248" top="-2672"/>
+		</Item>
+		<Item id="slidercontrol 07">
+			<Position left="5184" top="-976"/>
+		</Item>
+		<Item id="slidercontrol 08">
+			<Position left="2736" top="-768"/>
+		</Item>
+		<Item id="slidercontrol 09">
+			<Position left="3248" top="-3024"/>
+		</Item>
+		<Item id="slidercontrol 10">
+			<Position left="8128" top="-1088"/>
+		</Item>
+		<Item id="slidercontrol 11">
+			<Position left="5184" top="-912"/>
+		</Item>
+		<Item id="slidercontrol 12">
+			<Position left="5536" top="-1792"/>
+		</Item>
+		<Item id="stones 01">
+			<Position left="4560" top="-1120"/>
+		</Item>
+		<Item id="switch2 01">
+			<Position left="4096" top="-1040"/>
+		</Item>
+		<Item id="switch2 02">
+			<Position left="4144" top="112"/>
+		</Item>
+		<Item id="switchcurve2 01">
+			<Position left="6208" top="-1664"/>
+		</Item>
+		<Item id="techno 01">
+			<Position left="4560" top="-640"/>
+		</Item>
+		<Item id="threshold 02">
+			<Position left="3232" top="-2608"/>
+		</Item>
+		<Item id="threshold 03">
+			<Position left="3280" top="-2272"/>
+		</Item>
+		<Item id="tiles 02">
+			<Position left="7904" top="-1696"/>
+		</Item>
+		<Item id="tonecurve 01">
+			<Position left="4560" top="16"/>
+		</Item>
+		<Item id="tonecurve 02">
+			<Position left="7472" top="-592"/>
+		</Item>
+		<Item id="tonecurve 03">
+			<Position left="3824" top="-864"/>
+		</Item>
+		<Item id="tonecurve 04">
+			<Position left="4864" top="1440"/>
+		</Item>
+		<Item id="tonecurve 05">
+			<Position left="5968" top="-1728"/>
+		</Item>
+		<Item id="tonecurve 06">
+			<Position left="5968" top="-1584"/>
+		</Item>
+		<Item id="tonecurve 07">
+			<Position left="3504" top="-2272"/>
+		</Item>
+		<Item id="tonecurve 08">
+			<Position left="4976" top="368"/>
+		</Item>
+		<Item id="tonecurve 09">
+			<Position left="4864" top="1152"/>
+		</Item>
+		<Item id="tonecurve 10">
+			<Position left="2992" top="-2752"/>
+		</Item>
+		<Item id="tonecurve 11">
+			<Position left="2992" top="-2896"/>
+		</Item>
+		<Item id="tonecurve 13">
+			<Position left="7472" top="-736"/>
+		</Item>
+		<Item id="tonecurve 14">
+			<Position left="6704" top="-1216"/>
+		</Item>
+		<Item id="tonecurve 15">
+			<Position left="6704" top="-928"/>
+		</Item>
+		<Item id="transitioncurve 01">
+			<Position left="8336" top="-1808"/>
+		</Item>
+		<Item id="wavecurve 03">
+			<Position left="5488" top="368"/>
+		</Item>
+		<Item id="wavecurve 04">
+			<Position left="7728" top="-592"/>
+		</Item>
+		<Item id="wavecurve 05">
+			<Position left="5104" top="1152"/>
+		</Item>
+		<Item id="wavecurve 06">
+			<Position left="8560" top="-1648"/>
+		</Item>
+		<Item id="wavecurve 07">
+			<Position left="5104" top="1520"/>
+		</Item>
+	</FilterEditor>
+</Filter>

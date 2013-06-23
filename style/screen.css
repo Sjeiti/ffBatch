@@ -1,0 +1,164 @@
+body, html {
+	margin: 0px;
+	padding: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+body {
+	background: url("bkggraddy.gif") repeat-x #999ca4;
+}
+p, ul {
+	font-size: 11px;
+	clear: both;
+}
+.clear {
+	clear: both;
+	float: none;
+}
+#picker {
+	display: none;
+	position: absolute;
+	z-index: 1000;
+}
+#page {
+	margin: 36px auto 36px auto;
+	padding: 10px 0px 10px 0px;
+	width: 750px;
+	background-color:#FFF;
+}
+	h1 {
+		color: #A6ABB1;
+		display: block;
+		font-family: "trebuchet ms";
+		font-size: 34px;
+		letter-spacing: 8px;
+		margin: 0px 0px 0px 24px;
+		padding: 10px 0px 0px 0px;
+	}
+	#page p {
+		margin: 24px;
+	}
+	h2 {
+		font-family: "trebuchet ms";
+		margin: 0px 0px 10px 24px;
+			font-weight: normal;
+	}
+	#loadNewFilter {
+		display: block;
+		float: right;
+		clear: both;
+		margin-right: 20px;
+	}
+form {}
+	fieldset {
+		margin: 0px;
+		padding: 5px 24px 5px 24px;
+		border: 0px;
+		background: url(bg.png) repeat-x 0px -7px;
+	}
+		legend, h3 {
+			margin: 0px;
+			padding: 0px;
+			font-family: Tahoma,Arial,Helvetica,sans-serif;
+			font-size: 18px;
+			font-weight: normal;
+			cursor: pointer;
+			cursor: hand;
+		}
+		table {
+			width: 100%;
+			margin: 10px 0px 10px 0px;
+			padding: 0px;
+		}
+			thead, tbody, tr {
+				margin: 0px;
+				padding: 0px;
+			}
+			/*table#tb_surface tbody , table#tb_settings tbody {
+				display: none;
+			}*/
+			table th {
+				font-size: 11px;
+				text-align: left;
+				background-color: #ddd;
+			}
+			table td {
+			}
+			table strong, fieldset label {
+				font-weight: bold;
+				font-size: 11px;
+			}
+			table small {
+				font-size: 9px;
+			}
+
+			.start div, .end div {
+				margin: 3px 0px 0px 0px;
+			}
+			
+			.SliderControl input[type=text], .IntSliderControl input[type=text], .AngleControl input[type=text] {
+				float: right;
+				width: 20px;
+				height: 9px;
+				margin: 3px 10px 0px 0px;
+				padding: 0px;
+				font-size: 9px;
+				line-height: 8px;
+				text-align: right;
+				overflow: hidden;
+			}
+			.SliderControl div, .IntSliderControl div, .AngleControl div {
+				float: right;
+				width: 170px;
+				height: 7px;
+				margin: 5px 5px 0px 5px;
+				font-size: 7px;
+				line-height: 7px;
+			}
+			.start, .end {
+			}
+			input.color {
+				font-family: verdana, arial;
+				width: 50px;
+				height: 12px;
+				margin: 5px 0px 0px 35px;
+				font-size: 8px;
+				line-height: 8px;
+				font-weight: bold;
+				border: 0px;
+				text-align: center;
+			}
+			
+			.start select {
+				font-size: 9px;
+				line-height: 9px;
+				margin: 0px;
+				padding: 0px;
+				width: 15px;
+			}
+	form.ffxml label {
+		width: 250px;
+		float: left;
+		clear: left;
+	}
+	form.ffxml input, form.ffxml select {
+		float: left;
+	}
+	form.ffxml .wide {
+		width: 400px;
+	}
+	form.ffxml .short {
+		width: 20px;
+	}
+	form.ffxml input.submit {
+		margin: 5px 10px 5px 0px;
+		clear: both;
+		float: none;
+	}
+pre {
+	clear: both;
+	float: none;
+}
+textarea {
+	width: 100%;
+	height: 300px;
+}
