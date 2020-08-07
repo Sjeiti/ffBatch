@@ -1,4 +1,3 @@
-ffBatch
-=======
+# FFBatch #
 
-PHP based Filter Forge batch processing helper application
+FFXML interpreter to spew out XML files needed for the FilterForge batch renderer

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FFBatch</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"/>
+  <!--<link rel="stylesheet" href="/style/bootstrap.min.css"/>-->
+  <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css"/>
+  <link href='https://fonts.googleapis.com/css?family=Cousine:400,700|Nova+Mono' rel='stylesheet' type='text/css' />
+  <link rel="stylesheet" href="/style/screen.css"/>
+  <!-- old style favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/icon.png">
+  <!-- IOS icons and web application -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-startup-image" href="/img/icon-329x460.png" data-shouldbe="320x460">
+  <link rel="apple-touch-icon" href="/img/icon-57x57.png"/>
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/icon-72x72.png"/>
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/icon-114x114.png"/>
+  <!-- Android icons and web application -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" sizes="196x196" href="/img/icon-196x196.png">
+  <link rel="shortcut icon" sizes="128x128" href="/img/icon-128x128.png">
+</head>
+<body>
+  <div class="container-fluid">
+    <h1>FFBatch</h1>
+
+    <h2><label for="tabs-about">about</label></h2>
+    <input type="checkbox" name="tabs" id="tabs-about" class="tabs" checked />
+    <div class="tab">
+      <p>Drag and drop your filter.ffxml into the window</p>
+    </div>
+
+    <h2><label for="tabs-filter">filter</label></h2>
+    <input type="checkbox" name="tabs" id="tabs-filter" class="tabs" />
+    <div class="tab">
+
+      <h3 id="filter-name"></h3>
+
+      <div class="mb-3 row">
+        <label for="filter-preset" class="col-2">preset</label>
+        <div class="col-10">
+          <select id="filter-preset" class="form-control"></select>
+        </div>
+      </div>
+    </div>
+
+    <h2><label for="tabs-settings">settings</label></h2>
+    <input type="checkbox" name="tabs" id="tabs-settings" class="tabs" />
+    <div class="tab">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet architecto at neque totam voluptates. Animi consequatur culpa neque nobis placeat ratione repudiandae voluptas. Consequatur dicta dolore doloremque eos ipsam obcaecati?</p>
+      <div id="filter-settings"></div>
+    </div>
+
+    <h2><label for="tabs-controls">controls</label></h2>
+    <input type="checkbox" name="tabs" id="tabs-controls" class="tabs" />
+    <div class="tab">
+      <p>Animi consequatur culpa neque nobis placeat ratione repudiandae voluptas. Consequatur dicta dolore doloremque eos ipsam obcaecati?</p>
+      <div id="filter-controls"></div>
+    </div>
+
+    <h2><label for="tabs-download">download</label></h2>
+    <input type="checkbox" name="tabs" id="tabs-download" class="tabs" />
+    <div class="tab">
+      <p>Amet architecto at neque totam voluptates.</p>
+      <button type="button" class="btn btn-primary">Download</button>
+    </div>
+  </div>
+
+  <!--WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM-->
+
+  <script type="text/html" id="form_element_single">
+    <div class="mb-3 row">
+      <label for="<%=id%>" class="col-4"><%=title%></label>
+      <div class="col-8">
+        <input id="<%=id%>" class="<%=className%>" type="<%=type%>" value="<%=value%>">
+      </div>
+    </div>
+  </script>
+
+  <script type="text/html" id="form_element_range">
+    <div class="mb-3 row">
+      <label for="<%=id%>" class="col-2"><%=title%></label>
+      <div class="col-5">
+        <input id="<%=id%>" class="<%=className%>" type="<%=type%>" value="<%=value%>">
+      </div>
+      <div class="col-5">
+        <input id="<%=id%>_" class="<%=className%>" type="<%=type%>" value="<%=value%>">
+      </div>
+    </div>
+  </script>
+
+  <script type="text/html" id="user_tmpl">
+    <% for ( var i = 0; i < users.length; i++ ) { %>
+    <li><a href="<%=users[i].url%>"><%=users[i].name%></a></li>
+    <% } %>
+  </script>
+
+  <!--WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM-->
+
+  <script src="/js/index.js"></script>
+
+</body>
+</html>
