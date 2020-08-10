@@ -38,10 +38,13 @@ const Layout = styled.div`
 export const App = hot(module)(() => {
 
   const [filter, setFilter] = useState(null)
+  const [filterName, setFilterName] = useState('')
   const [presets, setPresets] = useState([])
   const [preset, setPreset] = useState(null)
   const [settings, setSettings] = useState([])
   const [controls, setControls] = useState([])
+
+  const [controlsArray, setControlsArray] = useState([]) // todo WMWMWMWMWMWMWM
 
   const onDrop = useCallback(acceptedFiles => {
     const [file] = acceptedFiles
@@ -60,18 +63,39 @@ export const App = hot(module)(() => {
   useEffect(()=>{
     console.log('filter',filter) // todo: remove log
     if (filter) {
-      const presets = Array.from(filter.querySelector('Presets').children)
-      const [preset] = presets
+      setPresets(Array.from(filter.querySelector('Presets').children))
+      setFilterName(filter.querySelector('Information').getAttribute('name-en'))
+    }
+  }, [filter])
+
+  const [filterPreset, setFilterPreset] = useState(0)
+  const onFilterPresetChange = useCallback(e=>setFilterPreset(e.target.value))
+  useEffect(()=>{
+    const {length} = presets
+    if (length>=0&&filterPreset>=0&&filterPreset<length) {
+      const preset = presets[filterPreset]
       const settings = Array.from(preset.querySelector('Settings').attributes)
       const controls = Array.from(preset.querySelector('Controls').children)
-      setPresets(presets)
       setPreset(preset)
       setSettings(settings)
       setControls(controls)
+
+      setControlsArray(controls.map((control,index)=>{
+        const {nodeName, id} = control
+        const value = control.querySelector('Value')?.getAttribute('value')
+        const name = filter.querySelector(`Components *[id="${id}"] Name`).getAttribute('value-en')
+        const Input = getInput(nodeName)
+        return {id, name, value, valueTo:value, Input, index}
+      }))
+
       console.log('preset',preset) // todo: remove log
       console.log('controls',controls,preset.querySelector('Controls')) // todo: remove log
     }
-  }, [filter])
+  }, [filterPreset, presets])
+
+  useEffect(()=>{
+    console.log('controlsArray',controlsArray) // todo: remove log
+  },[controlsArray])
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
@@ -79,22 +103,19 @@ export const App = hot(module)(() => {
     <h1>FFBatch</h1>
 
     <h2><label htmlFor="tabs-about">about</label></h2>
-    <input type="checkbox" name="tabs" id="tabs-about" className="tabs" checked />
+    <input type="checkbox" name="tabs" id="tabs-about" className="tabs" />
     <div className="tab">
       <p>Drag and drop your filter.ffxml into the window</p>
     </div>
 
     <h2><label htmlFor="tabs-filter">filter</label></h2>
-    <input type="checkbox" name="tabs" id="tabs-filter" className="tabs" />
+    <input type="checkbox" name="tabs" id="tabs-filter" className="tabs" defaultChecked />
     <div className="tab">
-
-      <h3>{filter&&filter.querySelector('Information').getAttribute('name-en')}</h3>
-
+      <h3>{filterName}</h3>
       <div className="mb-3 row">
         <label htmlFor="filter-preset" className="form-label col-2">preset</label>
         <div className="col-10">
-
-          <Select options={presets.map(({nodeName},i)=>({
+          <Select id="filter-preset" value={filterPreset} onChange={onFilterPresetChange} options={presets.map(({nodeName},i)=>({
             value: i
             ,key: i
             ,text: nodeName+(nodeName==='DefaultPreset'?'':' '+i)}))
@@ -121,19 +142,34 @@ export const App = hot(module)(() => {
     </div>
 
     <h2><label htmlFor="tabs-controls">controls</label></h2>
-    <input type="checkbox" name="tabs" id="tabs-controls" className="tabs" />
+    <input type="checkbox" name="tabs" id="tabs-controls" className="tabs" defaultChecked />
     <div className="tab">
       <p>Animi consequatur culpa neque nobis placeat ratione repudiandae voluptas. Consequatur dicta dolore doloremque eos ipsam obcaecati?</p>
-      {controls.map(control=>{
-        const {nodeName, id} = control
-        const name = filter.querySelector(`Components *[id="${id}"] Name`).getAttribute('value-en')
-        const Input = getInput(nodeName)
+      {controlsArray.map(control=>{
+        const {id, name, value, valueTo, Input, index} = control
+        const onChange = e=>{
+          const newControlsArray = [...controlsArray]
+          newControlsArray[index] = {...control, value: e.target.value}
+          setControlsArray(newControlsArray)
+        }
+        const onChangeTo = e=>{
+          const newControlsArray = [...controlsArray]
+          newControlsArray[index] = {...control, valueTo: e.target.value}
+          setControlsArray(newControlsArray)
+        }
+        // const {nodeName, id} = control
+        // const value = control.querySelector('Value')?.getAttribute('value')
+        // const name = filter.querySelector(`Components *[id="${id}"] Name`).getAttribute('value-en')
+        // const Input = getInput(nodeName)
         // value
         // const id = name.toLowerCase().replace(/[^a-z0-9]/g,'-')+i
         return <div className="mb-3 row" key={id}>
           <label htmlFor={id} className="col-4">{name}</label>
-          <div className="col-8">
-            <Input {...{id}} />
+          <div className="col-4">
+            <Input {...{id, value, onChange}} />
+          </div>
+          <div className="col-4">
+            <Input {...{id, value:valueTo, onChange:onChangeTo}} />
           </div>
         </div>
       })}
