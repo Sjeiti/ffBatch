@@ -54,10 +54,8 @@ module.exports = env => {
         ,_ENV: JSON.stringify(env||{})
       })
       ,new CopyWebpackPlugin({patterns:[
-          {
-            from: 'public'
-            ,to: './'
-          }
+          {from: 'public', to: './'}
+          ,{from: 'dist', to: 'docs', toType: 'dir', dot: true}
       ]})
     ]
   }

@@ -204,7 +204,8 @@ echo ----- END BATCH -----`)
     <h1>FFBatch</h1>
 
     <Tab title="about" id="tab-about">
-      // <p>Drag and drop your filter.ffxml into the window</p>
+      <p>Drag and drop your filter.ffxml into the window</p>
+      <p>But will it blend?</p>
     </Tab>
 
     <Tab title="filter" id="tab-filter" defaultChecked>
