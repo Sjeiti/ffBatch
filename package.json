@@ -1,6 +1,6 @@
 {
   "name": "FFBatch",
-  "version": "3.0.0-beta",
+  "version": "3.0.1",
   "description": "An FFXML interpreter to spew out XML files needed for the FilterForge batch renderer. See http://ffbatch.ronvalstar.nl",
   "url": "https://github.com/Sjeiti/ffbatch.git",
   "license": "MIT",
@@ -76,19 +76,12 @@
   },
   "scripts": {
     "start": "webpack-dev-server --hot --mode development",
-    "_start": "run-p build serve",
-    "serve": "node task/serve dist",
+    "serve": "node task/serve docs 7742",
     "webpack": "npx webpack --config webpack.config.js",
-    "clean": "del-cli dist -f",
+    "clean": "del-cli docs -f",
     "build": "run-s clean \"webpack -- --env.development --watch\"",
-    "build:prod": "run-s clean build:unzip build:json build:search \"webpack -- --env.production\" build:sitemap build:rss",
-    "_serve:dist": "node task/serve --root=dist --port=8283",
-    "_less": "node task/less --source=screen.less --target=screen.css --cwd=src/style/",
-    "_less:watch": "chokidar \"src/style/**/*.less\" -c \"npm run less\"",
-    "_version": "next-version package.json bower.json src/attractors.appcache src/js/attractors.js",
-    "_version:beta": "next-version package.json bower.json src/attractors.appcache src/js/attractors.js --release=beta --patch",
-    "_icons": "node task/icons",
-    "_icomoon": "node task/icomoon"
+    "build:prod": "run-s clean \"webpack -- --env.production\"",
+    "version": "next-version package.json"
   },
   "keywords": [
     "ffbatch"

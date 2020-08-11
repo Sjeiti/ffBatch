@@ -10,7 +10,7 @@ module.exports = env => {
     mode
     ,entry: './src/index.js'
     ,output: {
-      path: path.resolve(__dirname, 'dist')
+      path: path.resolve(__dirname, 'docs')
       ,filename: 'bundle.js'
     }
     ,devServer: {
@@ -55,7 +55,6 @@ module.exports = env => {
       })
       ,new CopyWebpackPlugin({patterns:[
           {from: 'public', to: './'}
-          ,{from: 'dist', to: 'docs', toType: 'dir', dot: true}
       ]})
     ]
   }
