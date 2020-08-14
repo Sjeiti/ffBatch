@@ -1,76 +1,16 @@
 import React, {useCallback, useState, useEffect} from 'react'
-import styled from 'styled-components'
 import {hot} from 'react-hot-loader'
 import {useDropzone} from 'react-dropzone'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
+import {parseXMLString} from './utils'
+import {getControlsProps,getSettingsProps} from './utils/filterforge'
+import {Tab} from './components/Tab'
+import {Layout} from './components/Layout'
+import {Header} from './components/Header'
+import {InputRow} from './components/InputRow'
 import {Number, Checkbox, Range, Select, Color, Hidden, File} from './components/Input'
 import tasks from './data/tasks.xml'
-
-
-
-const outerXML = node => new XMLSerializer().serializeToString(node.documentElement)
-
-const parseXMLString = s => {
-  const parser = new DOMParser()
-  return parser.parseFromString(s, 'text/xml')
-}
-
-const getSettingsProps = name=> {
-  const [Input,props] = {
-    size_factor:  [Range, {step:1, min:1, max:64}],
-    variation:    [Range, {step:1, min:1, max:30000}],
-    seamless:     [Checkbox],
-    antialiasing: [Number],
-    map_type:     [Select, {options: [{name:'',value:0},{name:'',value:1}]}],
-    edges_only:   [Checkbox],
-    clip_hdr_for_result: [Checkbox]
-  }[name]
-  return {...(props||{}), Input, id: 'filtersetting_'+name }
-}
-const getControlsProps = node=>{
-  const {nodeName, id} = node
-  const [Input, propz] = {
-    AngleControl:        [Range, {min:0, max:360}],
-    CheckboxControl:     [Checkbox],
-    ColorMapControl:     [Color],
-    CurveControl:        [Hidden],
-    GrayscaleMapControl: [Hidden],
-    IntSliderControl:    [Range, {step:1}],
-    SliderControl:       [Range, {step:.001, max:1}],
-    ValueControl:        [Number]
-  }[nodeName]
-  const props = {...(propz||{}), Input, id }
-  Array.from(node.children).forEach(node=>{
-    const {nodeName} = node
-    if (nodeName==='Name') {
-      props.name = node.getAttribute('value-en')
-    // } else if (nodeName==='RangeMax') {
-    //   props.max = node.getAttribute('value')
-    }
-  })
-  return props
-}
-
-const Tab = ({children, title, id, defaultChecked})=><>
-  <h2><label htmlFor={id}>{title}</label></h2>
-  <input type="checkbox" name="tabs" className="tabs" {...{id, defaultChecked}} />
-  <div className="tab">{children}</div>
-</>
-
-const InputRow = ({children, title})=>{
-  const {id} = children.props
-  return <div className="mb-3 row">
-    <label htmlFor={id} className="form-label col-4">{title}</label>
-    <div className="col-8">{children}</div>
-  </div>
-}
-
-const Layout = styled.div`
-  width: 100%;
-  height: 100%;
-  //box-shadow: 0 0 0 1rem red inset;
-`
 
 export const App = hot(module)(() => {
 
@@ -200,16 +140,23 @@ echo ----- END BATCH -----`)
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
+  const disabled = !filterName
+  console.log('disabled',disabled) // todo: remove log
+
   return <Layout {...getRootProps()} className="container-fluid">
-    <h1>FFBatch</h1>
+    <Header><h1>FFBatch{filterName&&':'} <strong>{filterName}</strong></h1></Header>
+
+    {filterName?'':<p className="alert alert-info">Drag and drop your filter.ffxml into this window</p>}
 
     <Tab title="about" id="tab-about">
-      <p>Drag and drop your filter.ffxml into the window</p>
-      <p>But will it blend?</p>
+      <p>This is a helper web-app to use with the <a href="https://www.filterforge.com/">Filter Forge</a> command line renderer.</p>
+      <p>The app is geared towards animating filter properties but you can also create XML files for rendering all the presets and/or render channels (diffuse, normal, bump). The resulting XML files can be downloaded as a zip and should be used with the Filter Forge command line binary.</p>
+      <p>The code of this webapp is open-sourced on Github where you can add issue or feature requests.</p>
+      <p>This app is a rewrite of <a href="https://www.filterforge.com/forum/read.php?PAGEN_1=1&FID=5&TID=6133&sphrase_id=4710101#nav_start">an earlier PHP-based solution</a>. It was no longer working and things like that can be done solely client-side these days.</p>
     </Tab>
 
-    <Tab title="filter" id="tab-filter" defaultChecked>
-      <h3>{filterName}</h3>
+    <Tab title="filter" id="tab-filter" {...{disabled}} defaultChecked>
+      <p>Note that preset changes the control settings to that that of the preset.</p>
       <InputRow title="preset">
         <Select id="filter-preset" value={filterPreset} onChange={onFilterPresetChange} options={presets.map(({nodeName},i)=>({
           value: i
@@ -226,17 +173,17 @@ echo ----- END BATCH -----`)
       <InputRow title="frames">
         <Range id="frames" value={frames} min={2**2} max={2**11} onChange={e=>setFrames(parseInt(e.target.value, 10))} />
       </InputRow>
-      <InputRow title="renderer">
+      {/*<InputRow title="renderer">
         <File id="renderer" onChange={e=>{
           const [file] = e.target.files
           console.log('file',file) // todo: remove log
           setRenderer(file.name)
         }} />
-      </InputRow>
+      </InputRow>*/}
     </Tab>
 
-    <Tab title="settings" id="tab-settings">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet architecto at neque totam voluptates. Animi consequatur culpa neque nobis placeat ratione repudiandae voluptas. Consequatur dicta dolore doloremque eos ipsam obcaecati?</p>
+    <Tab title="settings" id="tab-settings" {...{disabled}}>
+      <p>These are generic settings that cannot be animated</p>
       {settings.map(setting=>{
         const {id, name, value, Input, index, ...props} = setting
         const onChange = e=>{
@@ -253,8 +200,8 @@ echo ----- END BATCH -----`)
       })}
     </Tab>
 
-    <Tab title="controls" id="tab-controls" defaultChecked>
-      <p>Animi consequatur culpa neque nobis placeat ratione repudiandae voluptas. Consequatur dicta dolore doloremque eos ipsam obcaecati?</p>
+    <Tab title="controls" id="tab-controls" {...{disabled}} defaultChecked>
+      <p>These control the start- and end-values of the animation output.</p>
       {controls.map(control=>{
         const {id, name, value, valueTo, Input, index, ...props} = control
         const onChange = e=>{
@@ -279,8 +226,19 @@ echo ----- END BATCH -----`)
       })}
     </Tab>
 
-    <Tab title="download" id="tab-download">
-      <button type="button" onClick={onDownloadButtonClick} className="btn btn-primary">Download</button>
+    <Tab title="download" id="tab-download" {...{disabled}} defaultChecked>
+      <fieldset className="mt-2 mb-2">
+        <button type="button" onClick={onDownloadButtonClick} className="btn btn-primary">Download animation files</button>
+      </fieldset>
+      <fieldset className="mb-4">
+        {/*<button type="button" className="btn btn-primary">Download all presets</button>
+        <label className="form-label"> &nbsp; <input type="checkbox" className="btn btn-primary" /> Render all map types </label>*/}
+      </fieldset>
+      <p>The download zip file contains an XML and an FFXML file. Simply unzip and call the command line renderer with the XML file as parameter. For example:</p>
+      <pre><code>"C:\Program Files\Filter Forge 8\bin\FFXCmdRenderer-x64.exe" ffbatch_fire.xml</code></pre>
+      <p>You can also just drag the XML file onto the binary file. A third option for windows users is an included .bat file.</p>
+      <p>When the renderer has done it's job you can stitch all rendered files into an animation. A simple online tool could be <a href="https://ezgif.com/maker">Animated GIF Maker</a>, but there are plenty more online.</p>
+    {/*    */}
     </Tab>
   </Layout>
 })
