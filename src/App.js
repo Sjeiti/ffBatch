@@ -1,22 +1,20 @@
 import React, {useCallback, useState, useEffect} from 'react'
 import {hot} from 'react-hot-loader'
 import {useDropzone} from 'react-dropzone'
-import JSZip from 'jszip'
-import FileSaver from 'file-saver'
 import {parseXMLString} from './utils'
-import {getControlsProps,getSettingsProps} from './utils/filterforge'
+import {channels as channelsList,downloadZip,getControlsProps,getSettingsProps} from './utils/filterforge'
 import {Tab} from './components/Tab'
 import {Layout} from './components/Layout'
 import {Header} from './components/Header'
 import {InputRow} from './components/InputRow'
 import {Number, Checkbox, Range, Select, Color, Hidden, File} from './components/Input'
-import tasks from './data/tasks.xml'
 
 export const App = hot(module)(() => {
 
   const [frames, setFrames] = useState(32)
   const [renderer, setRenderer] = useState(null)
   const [size, setSize] = useState({width:256,height:256})
+  const [channels, setChannels] = useState(Array.from(new Array(9)).map((n,i)=>i===0))
 
   const [filter, setFilter] = useState(null)
   const [filterName, setFilterName] = useState('')
@@ -76,82 +74,32 @@ export const App = hot(module)(() => {
     }
   }, [filterPreset, presets])
 
-  const onDownloadButtonClick = e=>{
+  const onDownloadButtonAnimationClick = e=>{
     e.preventDefault()
-    const name = filterName.toLowerCase().replace(/[^a-z]/g, '-').replace(/^-|-$/g, '')
-    const fileName = `ffbatch_${name}`
-    const fileNameFFXML = `${fileName}.ffxml`
-    const fileNameXML = `${fileName}.xml`
-    const fileNameBat = `${fileName}.bat`
-    const fileNameZip = `${fileName}.zip`
-    //
-    const digits = frames.toString().length
-    //
-    const ffxml = filter.cloneNode(true)
-    const ffxmlPresets = ffxml.querySelector('Presets')
-    const ffxmlPreset = ffxmlPresets.querySelector('Preset')
-    Array.from(ffxmlPresets.querySelectorAll('Preset')).forEach(preset=>ffxmlPresets.removeChild(preset))
-    //
-    const xml = parseXMLString(tasks)
-    const xmlRoot = xml.documentElement
-    const xmlTask = xmlRoot.querySelector('Task')
-    xmlRoot.removeChild(xmlTask)
-    const xmlTaskImage = xmlTask.querySelector('Image')
-    xmlTaskImage.setAttribute('width', size.width)
-    xmlTaskImage.setAttribute('height', size.height)
-    //
-    for (let i=0;i<frames;i++) {
-      const part = i/(frames-1)
-      const preset = ffxmlPreset.cloneNode(true)
-      console.log('part',part) // todo: remove log
-      controls.forEach(control=>{
-        // FFXML
-        // todo: Input === Color
-        if ([Number,Range].includes(control.Input)) {
-          const {id, value:valueFrom, valueTo} = control
-          // todo valueFrom and valueTo should be number here
-          const valueF = parseFloat(valueFrom)
-          const valueT = parseFloat(valueTo)
-          const node = preset.querySelector(`[id="${id}"]`)
-          const value = valueF + part*(valueT-valueF)
-          node.querySelector('Value').setAttribute('value', value)
-          console.log('c',control.name,valueFrom,valueTo,value) // todo: remove log
-        }
-      })
-      ffxmlPresets.appendChild(preset)
-      // XML
-      const task = xmlTask.cloneNode(true)
-      const path = `${fileName}_${(i+1).toString().padStart(digits, '0')}.jpg`
-      task.querySelector('Result').setAttribute('path', path)
-      task.querySelector('Filter').setAttribute('value', fileNameFFXML)
-      task.querySelector('Preset').setAttribute('value', i+1)
-      xmlRoot.appendChild(task)
-    }
-    new JSZip()
-        .file(fileNameFFXML, outerXML(ffxml))
-        .file(fileNameXML,   outerXML(xml))
-        .file(fileNameBat,   `@echo off
-echo ----- START BATCH -----
-CALL "C:\\Program Files\\Filter Forge 8\\bin\\FFXCmdRenderer-x64.exe" ${fileNameXML}
-echo ----- END BATCH -----`)
-        .generateAsync({type: 'blob'})
-        .then(content=>FileSaver.saveAs(content, fileNameZip))
+    downloadZip(filter, controls, filterName, size, frames, channels)
+  }
+
+  const onDownloadButtonPresetsClick = e=>{
+    e.preventDefault()
+    downloadZip(filter, controls, filterName, size, frames, channels, false)
   }
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   const disabled = !filterName
-  console.log('disabled',disabled) // todo: remove log
 
   return <Layout {...getRootProps()} className="container-fluid">
-    <Header><h1>FFBatch{filterName&&':'} <strong>{filterName}</strong></h1></Header>
+    <Header>
+      <h1>FFBatch{filterName&&':'} <strong>{filterName}</strong></h1>
+      <small>{_VERSION}</small>
+    </Header>
 
-    {filterName?'':<p className="alert alert-info">Drag and drop your filter.ffxml into this window</p>}
+    {filterName?'':<p className="alert alert-primary">Drag and drop your filter.ffxml into this window</p>}
 
     <Tab title="about" id="tab-about">
       <p>This is a helper web-app to use with the <a href="https://www.filterforge.com/">Filter Forge</a> command line renderer.</p>
-      <p>The app is geared towards animating filter properties but you can also create XML files for rendering all the presets and/or render channels (diffuse, normal, bump). The resulting XML files can be downloaded as a zip and should be used with the Filter Forge command line binary.</p>
-      <p>The code of this webapp is open-sourced on Github where you can add issue or feature requests.</p>
+      <p>The app is geared towards animating filter properties but it can also create files for rendering all the presets and/or render maps (diffuse, normal, bump). The resulting XML files can be downloaded as a zip and should be used with the Filter Forge command line binary.</p>
+      <p>The code of this webapp is <a href="https://github.com/sjeiti/ffbatch">open-sourced on Github</a> where you can add issue or feature requests.</p>
       <p>This app is a rewrite of <a href="https://www.filterforge.com/forum/read.php?PAGEN_1=1&FID=5&TID=6133&sphrase_id=4710101#nav_start">an earlier PHP-based solution</a>. It was no longer working and things like that can be done solely client-side these days.</p>
     </Tab>
 
@@ -228,11 +176,22 @@ echo ----- END BATCH -----`)
 
     <Tab title="download" id="tab-download" {...{disabled}} defaultChecked>
       <fieldset className="mt-2 mb-2">
-        <button type="button" onClick={onDownloadButtonClick} className="btn btn-primary">Download animation files</button>
+        <button type="button" onClick={onDownloadButtonAnimationClick} className="btn btn-primary">Download animation files</button>
       </fieldset>
       <fieldset className="mb-4">
-        {/*<button type="button" className="btn btn-primary">Download all presets</button>
-        <label className="form-label"> &nbsp; <input type="checkbox" className="btn btn-primary" /> Render all map types </label>*/}
+        <button type="button" onClick={onDownloadButtonPresetsClick} className="btn btn-primary">Download all presets</button>
+        <ul className="list-unstyled mt-2">
+          <li><strong>channels</strong> (non-animation only)</li>
+          {channels.map((checked, index) => {
+            const {value, name} = channelsList[index]
+            const onChange = e=>{
+              const newChannelsArray = [...channels]
+              newChannelsArray[index] = e.target.checked
+              setChannels(newChannelsArray)
+            }
+            return <li key={index}><label><Checkbox name="channel" {...{value, onChange, checked}} /> {name}</label></li>
+          })}
+        </ul>
       </fieldset>
       <p>The download zip file contains an XML and an FFXML file. Simply unzip and call the command line renderer with the XML file as parameter. For example:</p>
       <pre><code>"C:\Program Files\Filter Forge 8\bin\FFXCmdRenderer-x64.exe" ffbatch_fire.xml</code></pre>
