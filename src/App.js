@@ -9,6 +9,7 @@ import {Header} from './components/Header'
 import {InputRow,InputRowDouble} from './components/InputRow'
 import {Number, Checkbox, Range, Select, Color, Hidden, File} from './components/Input'
 import {Github} from './components/Github'
+import {Hr} from './components/Hr'
 
 export const App = hot(module)(() => {
 
@@ -105,6 +106,8 @@ export const App = hot(module)(() => {
       <p>This app is a rewrite of <a href="https://www.filterforge.com/forum/read.php?PAGEN_1=1&FID=5&TID=6133&sphrase_id=4710101#nav_start">an earlier PHP-based solution</a>. It was no longer working and things like that can be done solely client-side these days.</p>
     </Tab>
 
+    <Hr/>
+
     <Tab title="filter" id="tab-filter" {...{disabled}} defaultChecked>
       <p>Note that preset changes the control settings to that that of the preset.</p>
       <InputRow title="preset">
@@ -161,6 +164,8 @@ export const App = hot(module)(() => {
         </InputRowDouble>
       })}
     </Tab>
+
+    <Hr />
 
     <Tab title="download" id="tab-download" {...{disabled}} defaultChecked>
       <fieldset className="mt-2 mb-2">
