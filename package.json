@@ -1,6 +1,6 @@
 {
   "name": "FFBatch",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "An FFXML interpreter to spew out XML files needed for the FilterForge batch renderer. See http://sjeiti.github.io/ffBatch/",
   "url": "https://github.com/Sjeiti/ffbatch.git",
   "license": "MIT",

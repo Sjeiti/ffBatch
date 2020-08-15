@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './style/screen.less'
+import './style/screen.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'core-js/stable'

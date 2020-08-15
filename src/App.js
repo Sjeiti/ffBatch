@@ -11,11 +11,13 @@ import {Number, Checkbox, Range, Select, Color, Hidden, File} from './components
 import {Github} from './components/Github'
 import {Hr} from './components/Hr'
 
+const ls = JSON.parse(localStorage.ffbatch||'{"size":{"width":256,"height":256},"frames":32}')
+
 export const App = hot(module)(() => {
 
-  const [frames, setFrames] = useState(32)
+  const [frames, setFrames] = useState(ls.frames)
   const [renderer, setRenderer] = useState(null)
-  const [size, setSize] = useState({width:256,height:256})
+  const [size, setSize] = useState(ls.size)
   const [channels, setChannels] = useState(Array.from(new Array(9)).map((n,i)=>i===0))
 
   const [filter, setFilter] = useState(null)
@@ -25,6 +27,13 @@ export const App = hot(module)(() => {
   const [settings, setSettings] = useState([])
   const [controls, setControls] = useState([])
 
+  useEffect(()=>{
+    localStorage.ffbatch = JSON.stringify({size,frames})
+  },[size,frames])
+  useEffect(()=>{
+    localStorage.filter&&setFilter(parseXMLString(localStorage.filter))
+  },[])
+
   const onDrop = useCallback(acceptedFiles => {
     const [file] = acceptedFiles
     // todo: check file
@@ -33,6 +42,7 @@ export const App = hot(module)(() => {
       const result = e.target.result
       const base64 = result.split(',').pop()
       const xmlString = atob(base64)
+      localStorage.filter = xmlString
       setFilter(parseXMLString(xmlString))
     })
     fileReader.readAsDataURL(file)
@@ -118,13 +128,13 @@ export const App = hot(module)(() => {
         }/>
       </InputRow>
       <InputRow title="width">
-        <Range id="imageWidth" value={size.width} min={2**4} max={2**13} onChange={e=>setSize({...size, width: parseInt(e.target.value, 10)})} />
+        <Number id="imageWidth" value={size.width} min={2**4} max={2**13} onChange={e=>setSize({...size, width: parseInt(e.target.value, 10)})} />
       </InputRow>
       <InputRow title="height">
-        <Range id="imageHeight" value={size.height} min={2**4} max={2**13} onChange={e=>setSize({...size, height: parseInt(e.target.value, 10)})} />
+        <Number id="imageHeight" value={size.height} min={2**4} max={2**13} onChange={e=>setSize({...size, height: parseInt(e.target.value, 10)})} />
       </InputRow>
       <InputRow title="frames">
-        <Range id="frames" value={frames} min={2**2} max={2**11} onChange={e=>setFrames(parseInt(e.target.value, 10))} />
+        <Number id="frames" value={frames} min={2**2} max={2**11} onChange={e=>setFrames(parseInt(e.target.value, 10))} />
       </InputRow>
     </Tab>
 
