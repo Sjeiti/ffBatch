@@ -6,8 +6,9 @@ import {channels as channelsList,downloadZip,getControlsProps,getSettingsProps} 
 import {Tab} from './components/Tab'
 import {Layout} from './components/Layout'
 import {Header} from './components/Header'
-import {InputRow} from './components/InputRow'
+import {InputRow,InputRowDouble} from './components/InputRow'
 import {Number, Checkbox, Range, Select, Color, Hidden, File} from './components/Input'
+import {Github} from './components/Github'
 
 export const App = hot(module)(() => {
 
@@ -90,6 +91,7 @@ export const App = hot(module)(() => {
 
   return <Layout {...getRootProps()} className="container-fluid">
     <Header>
+      <a href="https://github.com/sjeiti/ffbatch" className="float-right"><Github /></a>
       <h1>FFBatch{filterName&&':'} <strong>{filterName}</strong></h1>
       <small>{_VERSION}</small>
     </Header>
@@ -121,13 +123,6 @@ export const App = hot(module)(() => {
       <InputRow title="frames">
         <Range id="frames" value={frames} min={2**2} max={2**11} onChange={e=>setFrames(parseInt(e.target.value, 10))} />
       </InputRow>
-      {/*<InputRow title="renderer">
-        <File id="renderer" onChange={e=>{
-          const [file] = e.target.files
-          console.log('file',file) // todo: remove log
-          setRenderer(file.name)
-        }} />
-      </InputRow>*/}
     </Tab>
 
     <Tab title="settings" id="tab-settings" {...{disabled}}>
@@ -139,12 +134,10 @@ export const App = hot(module)(() => {
           newSettingsArray[index] = {...setting, value: e.target.value}
           setSettings(newSettingsArray)
         }
-        return <div className="mb-3 row" key={name}>
-          <label htmlFor={id} className="col-4">{name}</label>
-          <div className="col-8">
-            <Input {...{id, value, onChange}} {...props} />
-          </div>
-        </div>
+        const isValid = name!=='map_type'
+        return isValid&&<InputRow title={name}>
+          <Input {...{id, value, onChange}} {...props} />
+        </InputRow>
       })}
     </Tab>
 
@@ -162,15 +155,10 @@ export const App = hot(module)(() => {
           newControlsArray[index] = {...control, valueTo: parseFloat(e.target.value)}
           setControls(newControlsArray)
         }
-        return <div className="mb-3 row" key={id}>
-          <label htmlFor={id} className="col-4">{name}</label>
-          <div className="col-4">
-            <Input {...{id, value, onChange}} {...props} />
-          </div>
-          <div className="col-4">
-            <Input {...{id, value:valueTo, onChange:onChangeTo}} {...props} />
-          </div>
-        </div>
+        return <InputRowDouble title={name}>
+          <Input {...{id, value, onChange}} {...props} />
+          <Input {...{id, value:valueTo, onChange:onChangeTo}} {...props} />
+        </InputRowDouble>
       })}
     </Tab>
 

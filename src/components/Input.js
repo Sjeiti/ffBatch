@@ -1,4 +1,14 @@
 import React, {useState, useCallback} from 'react'
+import styled from 'styled-components'
+
+const InputNumberRange = styled.input`
+  width: 4rem;
+  min-height: 1rem;
+  margin-left: 0.5rem;
+  padding: 0 0.25rem;
+  font-size: .875rem;
+  line-height: .875rem;
+`
 
 export const Input = ({value:_value, onChange:_onChange, ..._attr}) => {
   const [value, setValue] = _onChange?[_value]:useState(_value)
@@ -23,7 +33,7 @@ export const Range = ({value:_value, onChange:_onChange, ..._attr}) => {
   const attr = {..._attr, value, onChange}
   return <div style={{display:'flex'}}>
     <input type="range" className="form-range" {...attr} />
-    <input type="number" className="form-control form-control-sm" style={{width:'4rem'}} {...attr} />
+    <InputNumberRange type="number" className="form-control" {...attr} />
   </div>
 }
 

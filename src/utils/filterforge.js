@@ -31,7 +31,6 @@ export const getSettingsProps = name=> {
 
 export const getControlsProps = node=>{
   const {nodeName, id} = node
-  console.log('node,nodeName,id',node,nodeName,id) // todo: remove log
   const [Input, propz] = {
     AngleControl:        [Range, {min:0, max:360}],
     CheckboxControl:     [Checkbox],
