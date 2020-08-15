@@ -53,7 +53,7 @@ export const getControlsProps = node=>{
   return props
 }
 
-export const downloadZip = (filter, controls, filterName, size, frames, channelValues, animation=true) =>{
+export const downloadZip = (filter, controls, filterName, size, frames, channelValues, renderer, animation=true) =>{
   // console.log('downloadZip',{filter, controls, filterName, size, frames, channelValues, animation}) // todo: remove log
   const name = filterName.toLowerCase().replace(/[^a-z]/g, '-').replace(/^-|-$/g, '')
   const fileName = `ffbatch_${name}`
@@ -145,7 +145,7 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
       .file(fileNameXML,   outerXML(xml))
       .file(fileNameBat,   `@echo off
 echo ----- START BATCH -----
-CALL "C:\\Program Files\\Filter Forge 8\\bin\\FFXCmdRenderer-x64.exe" ${fileNameXML}
+CALL "${renderer}" ${fileNameXML}
 echo ----- END BATCH -----`)
       .generateAsync({type: 'blob'})
       .then(content=>FileSaver.saveAs(content, fileNameZip))

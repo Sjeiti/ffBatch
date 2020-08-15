@@ -27,6 +27,8 @@ export const Number = attr => <Input type="number" className="form-control" {...
 
 export const File = attr => <Input type="file" className="form-control" {...attr} />
 
+export const Text = attr => <Input type="text" className="form-control" {...attr} />
+
 export const Range = ({value:_value, onChange:_onChange, ..._attr}) => {
   const [value, setValue] = _onChange?[_value]:useState(_value)
   const onChange = _onChange||useCallback(e=>setValue(e.target.value))

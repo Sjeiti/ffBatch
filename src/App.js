@@ -7,11 +7,11 @@ import {Tab} from './components/Tab'
 import {Layout} from './components/Layout'
 import {Header} from './components/Header'
 import {InputRow,InputRowDouble} from './components/InputRow'
-import {Number, Checkbox, Range, Select, Color, Hidden, File} from './components/Input'
+import {Number, Checkbox, Range, Select, Color, Hidden, File, Text} from './components/Input'
 import {Github} from './components/Github'
 import {Hr} from './components/Hr'
 
-const ls = JSON.parse(localStorage.ffbatch||'{"size":{"width":256,"height":256},"frames":32}')
+const ls = JSON.parse(localStorage.ffbatch||'{"size":{"width":256,"height":256},"frames":32,"renderer":"C:\\Program Files\\Filter Forge 8\\bin\\FFXCmdRenderer-x64.exe"}')
 
 export const App = hot(module)(() => {
 
@@ -28,8 +28,8 @@ export const App = hot(module)(() => {
   const [controls, setControls] = useState([])
 
   useEffect(()=>{
-    localStorage.ffbatch = JSON.stringify({size,frames})
-  },[size,frames])
+    localStorage.ffbatch = JSON.stringify({size,frames,renderer})
+  },[size,frames,renderer])
   useEffect(()=>{
     localStorage.filter&&setFilter(parseXMLString(localStorage.filter))
   },[])
@@ -39,11 +39,18 @@ export const App = hot(module)(() => {
     // todo: check file
     const fileReader = new FileReader()
     fileReader.addEventListener('load', e=>{
+      console.log('fileReader load',e) // todo: remove log
       const result = e.target.result
       const base64 = result.split(',').pop()
       const xmlString = atob(base64)
-      localStorage.filter = xmlString
-      setFilter(parseXMLString(xmlString))
+      const filter = parseXMLString(xmlString)
+      console.log('filter',filter) // todo: remove log
+      if (filter.documentElement.nodeName==='Filter') {
+        localStorage.filter = xmlString
+        setFilter(filter)
+      } else {
+
+      }
     })
     fileReader.readAsDataURL(file)
   }, [])
@@ -88,12 +95,12 @@ export const App = hot(module)(() => {
 
   const onDownloadButtonAnimationClick = e=>{
     e.preventDefault()
-    downloadZip(filter, controls, filterName, size, frames, channels)
+    downloadZip(filter, controls, filterName, size, frames, channels, renderer)
   }
 
   const onDownloadButtonPresetsClick = e=>{
     e.preventDefault()
-    downloadZip(filter, controls, filterName, size, frames, channels, false)
+    downloadZip(filter, controls, filterName, size, frames, channels, renderer, false)
   }
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -135,6 +142,9 @@ export const App = hot(module)(() => {
       </InputRow>
       <InputRow title="frames">
         <Number id="frames" value={frames} min={2**2} max={2**11} onChange={e=>setFrames(parseInt(e.target.value, 10))} />
+      </InputRow>
+      <InputRow title="renderer">
+        <Text id="renderer" value={renderer} onChange={e=>setRenderer(e.target.value)} />
       </InputRow>
     </Tab>
 
