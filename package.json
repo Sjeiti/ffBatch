@@ -1,7 +1,7 @@
 {
   "name": "FFBatch",
   "version": "3.0.3",
-  "description": "An FFXML interpreter to spew out XML files needed for the FilterForge batch renderer. See http://ffbatch.ronvalstar.nl",
+  "description": "An FFXML interpreter to spew out XML files needed for the FilterForge batch renderer. See http://sjeiti.github.io/ffBatch/",
   "url": "https://github.com/Sjeiti/ffbatch.git",
   "license": "MIT",
   "devDependencies": {
@@ -42,8 +42,6 @@
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
     "express": "^4.16.3",
-    "less-loader": "^6.2.0",
-    "less-plugin-glob": "^3.0.0",
     "next-version": "^0.11.7",
     "npm-run-all": "^4.1.5",
     "open": "^6.4.0",

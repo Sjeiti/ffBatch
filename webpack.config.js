@@ -24,13 +24,6 @@ module.exports = env => {
           ,use: 'babel-loader'
           ,exclude: /node_modules/
         },{
-          test: /\.less$/
-          ,use: [
-              'style-loader'
-              ,'css-loader'
-              ,{ loader: 'less-loader' }
-          ]
-        },{
           test: /\.css$/
           ,use: ['style-loader','css-loader']
         },{
