@@ -60,6 +60,7 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
   const fileNameFFXML = `${fileName}.ffxml`
   const fileNameXML = `${fileName}.xml`
   const fileNameBat = `${fileName}.bat`
+  const fileNameSh = `${fileName}.sh`
   const fileNameZip = `${fileName}.zip`
   //
   const digits = frames.toString().length
@@ -147,6 +148,9 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
 echo ----- START BATCH -----
 CALL "${renderer}" ${fileNameXML}
 echo ----- END BATCH -----`)
+      .file(fileNameSh,   `echo '----- START BATCH -----'
+"${renderer}" ${fileNameXML}
+echo '----- END BATCH -----'`)
       .generateAsync({type: 'blob'})
       .then(content=>FileSaver.saveAs(content, fileNameZip))
   }

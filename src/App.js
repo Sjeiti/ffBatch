@@ -11,13 +11,14 @@ import {Number, Checkbox, Range, Select, Color, Hidden, File, Text} from './comp
 import {Github} from './components/Github'
 import {Hr} from './components/Hr'
 
-const ls = JSON.parse(localStorage.ffbatch||'{"size":{"width":256,"height":256},"frames":32,"renderer":"C:\\Program Files\\Filter Forge 8\\bin\\FFXCmdRenderer-x64.exe"}')
+const stored = JSON.parse(localStorage.ffbatch||'{"size":{"width":256,"height":256},"frames":32,"renderer":"C:\\\\Program Files\\\\Filter Forge 8\\\\bin\\\\FFXCmdRenderer-x64.exe"}')
+
 
 export const App = hot(module)(() => {
 
-  const [frames, setFrames] = useState(ls.frames)
-  const [renderer, setRenderer] = useState(null)
-  const [size, setSize] = useState(ls.size)
+  const [frames, setFrames] = useState(stored?.frames)
+  const [renderer, setRenderer] = useState(stored?.renderer)
+  const [size, setSize] = useState(stored?.size)
   const [channels, setChannels] = useState(Array.from(new Array(9)).map((n,i)=>i===0))
 
   const [filter, setFilter] = useState(null)
@@ -119,7 +120,7 @@ export const App = hot(module)(() => {
     <Tab title="about" id="tab-about">
       <p>This is a helper web-app to use with the <a href="https://www.filterforge.com/">Filter Forge</a> command line renderer.</p>
       <p>The app is geared towards animating filter properties but it can also create files for rendering all the presets and/or render maps (diffuse, normal, bump). The resulting XML files can be downloaded as a zip and should be used with the Filter Forge command line binary.</p>
-      <p>The code of this webapp is <a href="https://github.com/sjeiti/ffbatch">open-sourced on Github</a> where you can add issue or feature requests.</p>
+      <p>The code of this webapp is <a href="https://github.com/sjeiti/ffbatch">open-sourced on Github</a> where you can add issues or feature requests.</p>
       <p>This app is a rewrite of <a href="https://www.filterforge.com/forum/read.php?PAGEN_1=1&FID=5&TID=6133&sphrase_id=4710101#nav_start">an earlier PHP-based solution</a>. It was no longer working and things like that can be done solely client-side these days.</p>
     </Tab>
 
