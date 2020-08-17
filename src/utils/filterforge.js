@@ -1,4 +1,4 @@
-import {Checkbox,Color,Hidden,Number,Range,Select} from '../components/Input'
+import {Checkbox,Color,Hidden,Number,Range,Select,Text} from '../components/Input'
 import {parseXMLString, outerXML} from './index'
 import tasks from '../data/tasks.xml'
 import JSZip from 'jszip'
@@ -22,7 +22,8 @@ export const getSettingsProps = name=> {
     variation:    [Range, {step:1, min:1, max:30000}],
     seamless:     [Checkbox],
     antialiasing: [Number],
-    map_type:     [Select, {options: [{name:'',value:0},{name:'',value:1}]}],
+    // map_type:     [Select, {options: [{name:'',value:0},{name:'',value:1}]}],
+    map_type:     [Hidden],
     edges_only:   [Checkbox],
     clip_hdr_for_result: [Checkbox]
   }[name]
@@ -36,9 +37,9 @@ export const getControlsProps = node=>{
     CheckboxControl:     [Checkbox],
     ColorMapControl:     [Color],
     CurveControl:        [Hidden],
-    GrayscaleMapControl: [Hidden],
+    GrayscaleMapControl: [Range, {step:1/256/8, max:1}],
     IntSliderControl:    [Range, {step:1}],
-    SliderControl:       [Range, {step:.001, max:1}],
+    SliderControl:       [Range, {step:1/256/8, max:1}],
     ValueControl:        [Number]
   }[nodeName]||[Hidden]
   const props = {...(propz||{}), Input, id }

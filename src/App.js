@@ -13,6 +13,7 @@ import {Hr} from './components/Hr'
 
 const stored = JSON.parse(localStorage.ffbatch||'{"size":{"width":256,"height":256},"frames":32,"renderer":"C:\\\\Program Files\\\\Filter Forge 8\\\\bin\\\\FFXCmdRenderer-x64.exe"}')
 
+const toName = s => s.replace(/[^A-Za-z0-9]/g, ' ')
 
 export const App = hot(module)(() => {
 
@@ -105,6 +106,7 @@ export const App = hot(module)(() => {
   }
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  // const getRootProps = ()=>return {"data-foo":23}
 
   const disabled = !filterName
 
@@ -158,8 +160,8 @@ export const App = hot(module)(() => {
           newSettingsArray[index] = {...setting, value: e.target.value}
           setSettings(newSettingsArray)
         }
-        const isValid = name!=='map_type'
-        return isValid&&<InputRow title={name}>
+        const isValid = Input!==Hidden
+        return isValid&&<InputRow title={toName(name)} key={id}>
           <Input {...{id, value, onChange}} {...props} />
         </InputRow>
       })}
@@ -179,7 +181,8 @@ export const App = hot(module)(() => {
           newControlsArray[index] = {...control, valueTo: parseFloat(e.target.value)}
           setControls(newControlsArray)
         }
-        return <InputRowDouble title={name}>
+        const isValid = Input!==Hidden
+        return isValid&&<InputRowDouble title={toName(name)} key={id}>
           <Input {...{id, value, onChange}} {...props} />
           <Input {...{id, value:valueTo, onChange:onChangeTo}} {...props} />
         </InputRowDouble>

@@ -3,8 +3,8 @@ import './style/screen.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'core-js/stable'
-import 'regenerator-runtime/runtime' // these fix async await for babel
-import 'mc_picker/dist/index'        // these fix async await for babel
+// import 'regenerator-runtime/runtime' // these fix async await for babel
+// import 'mc_picker/dist/index'        // these fix async await for babel
 
 // import { store } from './model/store'
 import { App } from './App'
