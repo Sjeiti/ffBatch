@@ -21,14 +21,16 @@ export const Input = ({value:_value, onChange:_onChange, ..._attr}) => {
 export const Checkbox = attr => <Input type="checkbox" className="form-check-input" {...attr} />
 
 export const Color = attr => <Input type="color" className="form-control" {...attr} />
-// export const Color = attrr => {
-//   const {onChange:_onChange, ...attr} = attrr
-//   function onChange(e) {
-//     console.log('e.target.value',e.target.value,typeof e.target.value) // todo: remove log
-//     return _onChange(e)
-//   }
-//   return <Input type="color" className="form-control" {...attr} onChange={onChange} />
-// }
+
+export const ColorMap = ({value:_value, onChange:_onChange, ..._attr}) => {
+  const [value, setValue] = _onChange?[_value]:useState(_value)
+  const onChange = _onChange||useCallback(e=>setValue(e.target.value))
+  const attr = {..._attr, value, onChange}
+  return <div style={{display:'flex'}}>
+    <Text {...attr} />
+    <Color {...attr} style={{flex:'0 0 4rem'}} />
+  </div>
+}
 
 export const Hidden = attr => <Input type="hidden" {...attr} />
 

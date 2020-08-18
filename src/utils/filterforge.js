@@ -1,8 +1,10 @@
-import {Checkbox,Color,Hidden,Number,Range,Select,Text} from '../components/Input'
+import {Checkbox,Color,ColorMap,Hidden,Number,Range,Select,Text} from '../components/Input'
 import {parseXMLString, outerXML} from './index'
 import tasks from '../data/tasks.xml'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
+
+export const defaultStorage = '{"size":{"width":256,"height":256},"frames":32,"renderer":"C:\\\\Program Files\\\\Filter Forge 8\\\\bin\\\\FFXCmdRenderer-x64.exe"}'
 
 export const channels = [
   { value: 1, name: 'Final' }
@@ -24,6 +26,10 @@ export const fileType = {
   ,PNG: 'image/png'
 }
 
+export const controlType = {
+  ColorMapControl: 'ColorMapControl'
+}
+
 export const getSettingsProps = name=> {
   const [Input,props] = {
     size_factor:  [Range, {step:1, min:1, max:64}],
@@ -43,7 +49,7 @@ export const getControlsProps = node=>{
   const [Input, propz] = {
     AngleControl:        [Range, {min:0, max:360}],
     CheckboxControl:     [Checkbox],
-    ColorMapControl:     [Color],
+    ColorMapControl:     [ColorMap],
     CurveControl:        [Hidden],
     GrayscaleMapControl: [Range, {step:1/256/8, max:1}],
     IntSliderControl:    [Range, {step:1}],
@@ -69,7 +75,7 @@ const cloneTo = (node, nodeName) => {
   return ffPreset
 }
 
-export const downloadZip = (filter, controls, filterName, size, frames, channelValues, renderer, animation=true) =>{
+export const downloadZip = (filter, controls, filterName, size, frames, channelValues, renderer, images, animation=true) =>{
   // console.log('downloadZip',{filter, controls, filterName, size, frames, channelValues, animation}) // todo: remove log
   const name = filterName.toLowerCase().replace(/[^a-z]/g, '-').replace(/^-|-$/g, '')
   const fileName = `ffbatch_${name}`
@@ -78,6 +84,9 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
   const fileNameBat = `${fileName}.bat`
   const fileNameSh = `${fileName}.sh`
   const fileNameZip = `${fileName}.zip`
+  const imageMap = new Map()
+  //
+  const zip = new JSZip()
   //
   const digits = frames.toString().length
   //
@@ -108,17 +117,24 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
     for (let i=0;i<frames;i++) {
       const part = i/(frames-1)
       const preset = ffxmlPreset.cloneNode(true)
+      // FFXML
       controls.forEach(control=>{
-        // FFXML
-        // todo: Input === Color
+        const {id, value:valueFrom, valueTo} = control
         if ([Number,Range].includes(control.Input)) {
-          const {id, value:valueFrom, valueTo} = control
           // todo valueFrom and valueTo should be number here
           const valueF = parseFloat(valueFrom)
           const valueT = parseFloat(valueTo)
           const node = preset.querySelector(`[id="${id}"]`)
           const value = valueF + part*(valueT-valueF)
           node.querySelector('Value').setAttribute('value', value)
+        } else if (control.Input===ColorMap) {
+          // todo: Input === Color
+          const image = images.find(img=>img.name===valueFrom)
+          image&&imageMap.set(valueFrom, image.data)
+          const controlNode = preset.querySelector(`[id="${id}"]`)
+          const imageNode = controlNode.querySelector('InputImage')||xml.createElement('InputImage')
+          imageNode.setAttribute('value', image.name)
+          controlNode.appendChild(imageNode)
         }
       })
       ffxmlPresets.appendChild(preset)
@@ -158,7 +174,10 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
       }
     })
   }
-  new JSZip()
+  // add images to zip
+  imageMap.forEach((value,key)=>zip.file(key, value.match(/base64,(.*)/).pop(), {base64: true}))
+  //
+  zip
       .file(fileNameFFXML, outerXML(ffxml))
       .file(fileNameXML,   outerXML(xml))
       .file(fileNameBat,   `@echo off

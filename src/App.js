@@ -2,7 +2,9 @@ import React, {useCallback, useState, useEffect} from 'react'
 import {hot} from 'react-hot-loader'
 import {useDropzone} from 'react-dropzone'
 import {parseXMLString} from './utils'
-import {channels as channelsList,downloadZip,fileType,getControlsProps,getSettingsProps} from './utils/filterforge'
+import {
+  channels as channelsList,controlType,defaultStorage,downloadZip,fileType,getControlsProps,getSettingsProps
+} from './utils/filterforge'
 import {Tab} from './components/Tab'
 import {Layout} from './components/Layout'
 import {Header} from './components/Header'
@@ -12,7 +14,7 @@ import {Github} from './components/Github'
 import {Hr} from './components/Hr'
 import {ButtonText} from './components/ButtonText'
 
-const stored = JSON.parse(localStorage.ffbatch||'{"size":{"width":256,"height":256},"frames":32,"renderer":"C:\\\\Program Files\\\\Filter Forge 8\\\\bin\\\\FFXCmdRenderer-x64.exe"}')
+const stored = JSON.parse(localStorage.ffbatch||defaultStorage)
 
 const toName = s => s.replace(/[^A-Za-z0-9]/g, ' ')
 
@@ -33,6 +35,7 @@ export const App = hot(module)(() => {
   const [preset, setPreset] = useState(null)
   const [settings, setSettings] = useState([])
   const [controls, setControls] = useState([])
+  const [images, setImages] = useState([])
 
   useEffect(()=>{
     localStorage.ffbatch = JSON.stringify({size,frames,renderer})
@@ -41,30 +44,52 @@ export const App = hot(module)(() => {
     localStorage.filter&&setFilter(parseXMLString(localStorage.filter))
   },[])
 
-  const onDrop = useCallback(acceptedFiles => {
+
+  const onDrop = useCallback((acceptedFiles, b, e) => {
     const [file] = acceptedFiles
-    // todo: check file
+    const {name} = file
+    const {target} = e
     const fileReader = new FileReader()
     fileReader.addEventListener('load', e=>{
       console.log('fileReader load',e) // todo: remove log
       const result = e.target.result
       const type = result.match(/data:([^;]*)/).pop()
-      console.log('type',type) // todo: remove log
       if (type===FFXML) {
         const base64 = result.split(',').pop()
         const xmlString = atob(base64)
         const filter = parseXMLString(xmlString)
-        console.log('filter',filter) // todo: remove log
         if (filter.documentElement.nodeName==='Filter') {
           localStorage.filter = xmlString
           setFilter(filter)
         }
       } else if (imageTypes.includes(type)) {
-
+        const closestRow = target.closest('[data-row]')
+        const isTargetInRow = closestRow?.contains(target)
+        const rowID = closestRow?.dataset.row
+        const component = filter.querySelector(`Components [id='${rowID}']`)
+        const isCorrectImageDropTarget = component?.nodeName===controlType.ColorMapControl
+        if (isTargetInRow&&isCorrectImageDropTarget) {
+          setControls(controls.slice(0).map(control => {
+            const {id} = control
+            return id===rowID?{...control, value: name, valueTo: name}:control
+          }))
+          const isImageExists = !!images.find(a=>a.id===rowID)
+          const imageObj = {
+            id: rowID
+            ,data: result
+            ,name
+          }
+          setImages(isImageExists?images.slice(0).map(image => image.id===rowID?imageObj:image):[...images, imageObj])
+        } else {
+          // todo: alert correct dropzone
+          console.warn('drop images somewhere else')
+        }
+      } else {
+        // todo: alert about correct filetypes to drop
       }
     })
     fileReader.readAsDataURL(file)
-  }, [])
+  }, [filter, controls, images])
 
   useEffect(()=>{
     console.log('filter',filter) // todo: remove log
@@ -118,12 +143,12 @@ export const App = hot(module)(() => {
 
   const onDownloadButtonAnimationClick = e=>{
     e.preventDefault()
-    downloadZip(filter, controls, filterName, size, frames, channels, renderer)
+    downloadZip(filter, controls, filterName, size, frames, channels, renderer, images)
   }
 
   const onDownloadButtonPresetsClick = e=>{
     e.preventDefault()
-    downloadZip(filter, controls, filterName, size, frames, channels, renderer, false)
+    downloadZip(filter, controls, filterName, size, frames, channels, renderer, images, false)
   }
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -195,16 +220,21 @@ export const App = hot(module)(() => {
       {controls.map(control=>{
         const {id, name, value, valueTo, Input, index, ...props} = control
         const onChange = e=>{
+          const {value: rawValue, type} = e.target
+          const value = ['number','range'].includes(type)?parseFloat(rawValue):rawValue
           const newControlsArray = [...controls]
-          newControlsArray[index] = {...control, value: parseFloat(e.target.value)}
+          newControlsArray[index] = {...control, value}
           setControls(newControlsArray)
         }
         const onChangeTo = e=>{
+          const {value: rawValue, type} = e.target
+          const valueTo = ['number','range'].includes(type)?parseFloat(rawValue):rawValue
           const newControlsArray = [...controls]
-          newControlsArray[index] = {...control, valueTo: parseFloat(e.target.value)}
+          newControlsArray[index] = {...control, valueTo}
           setControls(newControlsArray)
         }
         const isValid = Input!==Hidden
+
         return isValid&&<InputRowDouble title={toName(name)} key={id}>
           <Input {...{id, value, onChange}} {...props} />
           <Input {...{id, value:valueTo, onChange:onChangeTo}} {...props} />
@@ -235,7 +265,8 @@ export const App = hot(module)(() => {
       </fieldset>
       <p>The download zip file contains an XML and an FFXML file. Simply unzip and call the command line renderer with the XML file as parameter. For example:</p>
       <pre><code>"C:\Program Files\Filter Forge 8\bin\FFXCmdRenderer-x64.exe" ffbatch_fire.xml</code></pre>
-      <p>You can also just drag the XML file onto the binary file. A third option for windows users is an included .bat file.</p>
+      <p>You can also execute the `.bat` or `.sh` for Windows and OSX users respectively <small>(proviced you filled in the correct location of the binary under `filter - renderer`)</small>.</p>
+      <p>A third option is to just drag the XML file onto the binary file.</p>
       <p>When the renderer has done it's job you can stitch all rendered files into an animation. A simple online tool could be <a href="https://ezgif.com/maker">Animated GIF Maker</a>, but there are plenty more online.</p>
     {/*    */}
     </Tab>
