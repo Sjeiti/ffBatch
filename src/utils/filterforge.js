@@ -1,5 +1,5 @@
 import {Checkbox,Color,ColorMap,Hidden,Number,Range,Select,Text} from '../components/Input'
-import {parseXMLString, outerXML} from './index'
+import {parseXMLString,outerXML,hex2rgb} from './index'
 import tasks from '../data/tasks.xml'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
@@ -103,12 +103,12 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
     ffxmlPreset&&ffxmlPresets.insertBefore(ffPreset,ffxmlPreset)||ffxmlPresets.appendChild(ffPreset)
   }
   //
-  animation&&Array.from(ffxmlPresets.querySelectorAll('Preset')).forEach(preset=>ffxmlPresets.removeChild(preset))
+  animation&&Array.from(ffxmlPresets.querySelectorAll('Preset')).forEach(preset=>preset.remove())
   //
   const xml = parseXMLString(tasks)
   const xmlRoot = xml.documentElement
   const xmlTask = xmlRoot.querySelector('Task')
-  xmlRoot.removeChild(xmlTask)
+  xmlTask.remove()
   const xmlTaskImage = xmlTask.querySelector('Image')
   xmlTaskImage.setAttribute('width', size.width)
   xmlTaskImage.setAttribute('height', size.height)
@@ -128,13 +128,28 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
           const value = valueF + part*(valueT-valueF)
           node.querySelector('Value').setAttribute('value', value)
         } else if (control.Input===ColorMap) {
-          // todo: Input === Color
+          // add images to map
           const image = images.find(img=>img.name===valueFrom)
           image&&imageMap.set(valueFrom, image.data)
+          //
+          const regHex = /^#[0-9a-fA-F]{6}$/
+          const isFrHexColor = regHex.test(valueFrom)
+          const isToHexColor = regHex.test(valueTo)
+          //
           const controlNode = preset.querySelector(`[id="${id}"]`)
-          const imageNode = controlNode.querySelector('InputImage')||xml.createElement('InputImage')
-          imageNode.setAttribute('value', image.name)
-          controlNode.appendChild(imageNode)
+          if (isFrHexColor&&isToHexColor) {
+            controlNode.querySelector('InputImage')?.remove()
+            const [rf, gf, bf] = hex2rgb(valueFrom).map(n=>n/255)
+            const [rt, gt, bt] = hex2rgb(valueTo).map(n=>n/255)
+            const colorNode = controlNode.querySelector('Color')
+            colorNode.setAttribute('red'  , rf + part*(rt - rf))
+            colorNode.setAttribute('green', gf + part*(gt - gf))
+            colorNode.setAttribute('blue' , bf + part*(bt - bf))
+          } else if (image) {
+            const imageNode = controlNode.querySelector('InputImage')||xml.createElement('InputImage')
+            imageNode.setAttribute('value', image.name)
+            controlNode.appendChild(imageNode)
+          }
         }
       })
       ffxmlPresets.appendChild(preset)
@@ -149,7 +164,7 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
   } else { // channels
     const presetsList = ffxmlPresets.querySelectorAll('Preset')
     const presetsArray = Array.from(presetsList)
-    presetsArray.forEach(p=>ffxmlPresets.removeChild(p))
+    presetsArray.forEach(p=>p.remove())
     //
     // const numChannels = channelValues.filter(c=>c).length
     let presetIndex = 0

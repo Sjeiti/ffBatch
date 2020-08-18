@@ -44,7 +44,6 @@ export const App = hot(module)(() => {
     localStorage.filter&&setFilter(parseXMLString(localStorage.filter))
   },[])
 
-
   const onDrop = useCallback((acceptedFiles, b, e) => {
     const [file] = acceptedFiles
     const {name} = file
