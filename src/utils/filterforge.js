@@ -16,6 +16,14 @@ export const channels = [
   ,{ value: 9, name: 'Reflective occlusion' }
 ]
 
+export const fileType = {
+  FFXML: 'text/xml-filterforge-filter'
+  ,XML: 'text/xml'
+  ,JPG: 'image/jpeg'
+  ,GIF: 'image/gif'
+  ,PNG: 'image/png'
+}
+
 export const getSettingsProps = name=> {
   const [Input,props] = {
     size_factor:  [Range, {step:1, min:1, max:64}],
@@ -54,6 +62,13 @@ export const getControlsProps = node=>{
   return props
 }
 
+const cloneTo = (node, nodeName) => {
+  const ffPreset = node.ownerDocument.createElement(nodeName)
+  const clone = node.cloneNode(true)
+  while (clone.firstElementChild) ffPreset.appendChild(clone.firstElementChild)
+  return ffPreset
+}
+
 export const downloadZip = (filter, controls, filterName, size, frames, channelValues, renderer, animation=true) =>{
   // console.log('downloadZip',{filter, controls, filterName, size, frames, channelValues, animation}) // todo: remove log
   const name = filterName.toLowerCase().replace(/[^a-z]/g, '-').replace(/^-|-$/g, '')
@@ -69,12 +84,13 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
   const ffxml = filter.cloneNode(true)
   const ffxmlPresets = ffxml.querySelector('Presets')
   const ffxmlDefaultPreset = ffxmlPresets.querySelector('DefaultPreset')
-  const ffxmlPreset = ffxmlPresets.querySelector('Preset')
+  const ffxmlPreset = ffxmlPresets.querySelector('Preset')||ffxmlDefaultPreset&&cloneTo(ffxmlDefaultPreset, 'Preset')
   //
   if (!animation) {
-    const ffPreset = filter.createElement('Preset')
-    const clone = ffxmlDefaultPreset.cloneNode(true)
-    while (clone.firstElementChild) ffPreset.appendChild(clone.firstElementChild)
+    const ffPreset = cloneTo(ffxmlDefaultPreset, 'Preset')
+    // const ffPreset = filter.createElement('Preset')
+    // const clone = ffxmlDefaultPreset.cloneNode(true)
+    // while (clone.firstElementChild) ffPreset.appendChild(clone.firstElementChild)
     ffxmlPreset&&ffxmlPresets.insertBefore(ffPreset,ffxmlPreset)||ffxmlPresets.appendChild(ffPreset)
   }
   //
@@ -155,3 +171,4 @@ echo '----- END BATCH -----'`)
       .generateAsync({type: 'blob'})
       .then(content=>FileSaver.saveAs(content, fileNameZip))
   }
+

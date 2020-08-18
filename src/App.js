@@ -2,7 +2,7 @@ import React, {useCallback, useState, useEffect} from 'react'
 import {hot} from 'react-hot-loader'
 import {useDropzone} from 'react-dropzone'
 import {parseXMLString} from './utils'
-import {channels as channelsList,downloadZip,getControlsProps,getSettingsProps} from './utils/filterforge'
+import {channels as channelsList,downloadZip,fileType,getControlsProps,getSettingsProps} from './utils/filterforge'
 import {Tab} from './components/Tab'
 import {Layout} from './components/Layout'
 import {Header} from './components/Header'
@@ -10,10 +10,14 @@ import {InputRow,InputRowDouble} from './components/InputRow'
 import {Number, Checkbox, Range, Select, Color, Hidden, File, Text} from './components/Input'
 import {Github} from './components/Github'
 import {Hr} from './components/Hr'
+import {ButtonText} from './components/ButtonText'
 
 const stored = JSON.parse(localStorage.ffbatch||'{"size":{"width":256,"height":256},"frames":32,"renderer":"C:\\\\Program Files\\\\Filter Forge 8\\\\bin\\\\FFXCmdRenderer-x64.exe"}')
 
 const toName = s => s.replace(/[^A-Za-z0-9]/g, ' ')
+
+const {FFXML, XML, JPG, GIF, PNG} = fileType
+const imageTypes = [JPG, GIF, PNG]
 
 export const App = hot(module)(() => {
 
@@ -24,6 +28,7 @@ export const App = hot(module)(() => {
 
   const [filter, setFilter] = useState(null)
   const [filterName, setFilterName] = useState('')
+
   const [presets, setPresets] = useState([])
   const [preset, setPreset] = useState(null)
   const [settings, setSettings] = useState([])
@@ -43,14 +48,18 @@ export const App = hot(module)(() => {
     fileReader.addEventListener('load', e=>{
       console.log('fileReader load',e) // todo: remove log
       const result = e.target.result
-      const base64 = result.split(',').pop()
-      const xmlString = atob(base64)
-      const filter = parseXMLString(xmlString)
-      console.log('filter',filter) // todo: remove log
-      if (filter.documentElement.nodeName==='Filter') {
-        localStorage.filter = xmlString
-        setFilter(filter)
-      } else {
+      const type = result.match(/data:([^;]*)/).pop()
+      console.log('type',type) // todo: remove log
+      if (type===FFXML) {
+        const base64 = result.split(',').pop()
+        const xmlString = atob(base64)
+        const filter = parseXMLString(xmlString)
+        console.log('filter',filter) // todo: remove log
+        if (filter.documentElement.nodeName==='Filter') {
+          localStorage.filter = xmlString
+          setFilter(filter)
+        }
+      } else if (imageTypes.includes(type)) {
 
       }
     })
@@ -62,6 +71,9 @@ export const App = hot(module)(() => {
     if (filter) {
       setPresets(Array.from(filter.querySelector('Presets').children))
       setFilterName(filter.querySelector('Information').getAttribute('name-en'))
+    } else {
+      setPresets([])
+      setFilterName('')
     }
   }, [filter])
 
@@ -92,8 +104,17 @@ export const App = hot(module)(() => {
       }))
 
       console.log('preset',preset) // todo: remove log
+    } else {
+      setPreset(null)
+      setSettings([])
+      setControls([])
     }
   }, [filterPreset, presets])
+
+  const onClickClearFilter = useCallback(e=>{
+    setFilter(null)
+    localStorage.filter = ''
+  })
 
   const onDownloadButtonAnimationClick = e=>{
     e.preventDefault()
@@ -113,7 +134,9 @@ export const App = hot(module)(() => {
   return <Layout {...getRootProps()} className="container-fluid">
     <Header>
       <a href="https://github.com/sjeiti/ffbatch" className="float-right"><Github /></a>
-      <h1>FFBatch{filterName&&':'} <strong>{filterName}</strong></h1>
+      <h1>FFBatch{filterName&&':'} <strong>{filterName}</strong>{
+        filterName&&<ButtonText onClick={onClickClearFilter}>×</ButtonText>
+      }</h1>
       <small>{_VERSION}</small>
     </Header>
 
