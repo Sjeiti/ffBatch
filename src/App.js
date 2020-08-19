@@ -8,7 +8,7 @@ import {
 import {Tab} from './components/Tab'
 import {Layout} from './components/Layout'
 import {Header} from './components/Header'
-import {InputRow,InputRowDouble} from './components/InputRow'
+import {InputRow} from './components/InputRow'
 import {Number, Checkbox, Range, Select, Color, Hidden, File, Text} from './components/Input'
 import {Github} from './components/Github'
 import {Hr} from './components/Hr'
@@ -36,6 +36,8 @@ export const App = hot(module)(() => {
   const [settings, setSettings] = useState([])
   const [controls, setControls] = useState([])
   const [images, setImages] = useState([])
+
+  const [image, setImage] = useState('')
 
   useEffect(()=>{
     localStorage.ffbatch = JSON.stringify({size,frames,renderer})
@@ -66,12 +68,18 @@ export const App = hot(module)(() => {
         const isTargetInRow = closestRow?.contains(target)
         const rowID = closestRow?.dataset.row
         const component = filter.querySelector(`Components [id='${rowID}']`)
-        const isCorrectImageDropTarget = component?.nodeName===controlType.ColorMapControl
-        if (isTargetInRow&&isCorrectImageDropTarget) {
-          setControls(controls.slice(0).map(control => {
-            const {id} = control
-            return id===rowID?{...control, value: name, valueTo: name}:control
-          }))
+        const isColorMapControl = component?.nodeName===controlType.ColorMapControl
+        const isInputImage = rowID==='input-image'
+        // console.log('rowID',rowID,target) // todo: remove log
+        if (isTargetInRow&&(isColorMapControl||isInputImage)) {
+          if (isColorMapControl) {
+            setControls(controls.slice(0).map(control => {
+              const {id} = control
+              return id===rowID?{...control, value: name, valueTo: name}:control
+            }))
+          } else if (isInputImage) {
+            setImage(name)
+          }
           const isImageExists = !!images.find(a=>a.id===rowID)
           const imageObj = {
             id: rowID
@@ -89,6 +97,12 @@ export const App = hot(module)(() => {
     })
     fileReader.readAsDataURL(file)
   }, [filter, controls, images])
+
+  //////////////////////
+  // useEffect(()=>{
+  //   console.log('images',images) // todo: remove log
+  // }, [images])
+  //////////////////////
 
   useEffect(()=>{
     console.log('filter',filter) // todo: remove log
@@ -142,12 +156,12 @@ export const App = hot(module)(() => {
 
   const onDownloadButtonAnimationClick = e=>{
     e.preventDefault()
-    downloadZip(filter, controls, filterName, size, frames, channels, renderer, images)
+    downloadZip(filter, controls, filterName, size, frames, channels, renderer, images, image)
   }
 
   const onDownloadButtonPresetsClick = e=>{
     e.preventDefault()
-    downloadZip(filter, controls, filterName, size, frames, channels, renderer, images, false)
+    downloadZip(filter, controls, filterName, size, frames, channels, renderer, images, image, false)
   }
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -184,10 +198,14 @@ export const App = hot(module)(() => {
           ,text: nodeName+(nodeName==='DefaultPreset'?'':' '+i)}))
         }/>
       </InputRow>
-      <InputRow title="width">
-        <Number id="imageWidth" value={size.width} min={2**4} max={2**13} onChange={e=>setSize({...size, width: parseInt(e.target.value, 10)})} />
+
+      <InputRow title="input image">
+          <Text id="input-image" value={image} onChange={e=>setImage(e.target.value)} />
+          {image&& <img src={images.find(img=>img.name===image)?.data} alt="input image" style={{height:'2.375rem',boxShadow:'0 0 0.25rem rgba(0,0,0,0.3)'}} />}
       </InputRow>
-      <InputRow title="height">
+
+      <InputRow title="size">
+        <Number id="imageWidth" value={size.width} min={2**4} max={2**13} onChange={e=>setSize({...size, width: parseInt(e.target.value, 10)})} />
         <Number id="imageHeight" value={size.height} min={2**4} max={2**13} onChange={e=>setSize({...size, height: parseInt(e.target.value, 10)})} />
       </InputRow>
       <InputRow title="frames">
@@ -234,10 +252,10 @@ export const App = hot(module)(() => {
         }
         const isValid = Input!==Hidden
 
-        return isValid&&<InputRowDouble title={toName(name)} key={id}>
+        return isValid&&<InputRow title={toName(name)} key={id}>
           <Input {...{id, value, onChange}} {...props} />
           <Input {...{id, value:valueTo, onChange:onChangeTo}} {...props} />
-        </InputRowDouble>
+        </InputRow>
       })}
     </Tab>
 

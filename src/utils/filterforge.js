@@ -84,7 +84,10 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
   const fileNameBat = `${fileName}.bat`
   const fileNameSh = `${fileName}.sh`
   const fileNameZip = `${fileName}.zip`
+  //
   const imageMap = new Map()
+  const inputImage = images.find(img=>img.id==='input-image')
+  inputImage&&imageMap.set(inputImage.name, inputImage.data)
   //
   const zip = new JSZip()
   //
@@ -112,6 +115,7 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
   const xmlTaskImage = xmlTask.querySelector('Image')
   xmlTaskImage.setAttribute('width', size.width)
   xmlTaskImage.setAttribute('height', size.height)
+  inputImage&&xmlTaskImage.setAttribute('value', inputImage.name)
   //
   if (animation) {
     for (let i=0;i<frames;i++) {
@@ -120,35 +124,37 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
       // FFXML
       controls.forEach(control=>{
         const {id, value:valueFrom, valueTo} = control
-        if ([Number,Range].includes(control.Input)) {
-          // todo valueFrom and valueTo should be number here
-          const valueF = parseFloat(valueFrom)
-          const valueT = parseFloat(valueTo)
-          const node = preset.querySelector(`[id="${id}"]`)
-          const value = valueF + part*(valueT-valueF)
-          node.querySelector('Value').setAttribute('value', value)
-        } else if (control.Input===ColorMap) {
-          // add images to map
-          const image = images.find(img=>img.name===valueFrom)
-          image&&imageMap.set(valueFrom, image.data)
-          //
-          const regHex = /^#[0-9a-fA-F]{6}$/
-          const isFrHexColor = regHex.test(valueFrom)
-          const isToHexColor = regHex.test(valueTo)
-          //
-          const controlNode = preset.querySelector(`[id="${id}"]`)
-          if (isFrHexColor&&isToHexColor) {
-            controlNode.querySelector('InputImage')?.remove()
-            const [rf, gf, bf] = hex2rgb(valueFrom).map(n=>n/255)
-            const [rt, gt, bt] = hex2rgb(valueTo).map(n=>n/255)
-            const colorNode = controlNode.querySelector('Color')
-            colorNode.setAttribute('red'  , rf + part*(rt - rf))
-            colorNode.setAttribute('green', gf + part*(gt - gf))
-            colorNode.setAttribute('blue' , bf + part*(bt - bf))
-          } else if (image) {
-            const imageNode = controlNode.querySelector('InputImage')||xml.createElement('InputImage')
-            imageNode.setAttribute('value', image.name)
-            controlNode.appendChild(imageNode)
+        if (valueFrom!==valueTo) {
+          if ([Number,Range].includes(control.Input)) {
+            // todo valueFrom and valueTo should be number here
+            const valueF = parseFloat(valueFrom)
+            const valueT = parseFloat(valueTo)
+            const node = preset.querySelector(`[id="${id}"]`)
+            const value = valueF + part*(valueT-valueF)
+            node.querySelector('Value').setAttribute('value', value)
+          } else if (control.Input===ColorMap) {
+            // add images to map
+            const image = images.find(img=>img.name===valueFrom)
+            image&&imageMap.set(valueFrom, image.data)
+            //
+            const regHex = /^#[0-9a-fA-F]{6}$/
+            const isFrHexColor = regHex.test(valueFrom)
+            const isToHexColor = regHex.test(valueTo)
+            //
+            const controlNode = preset.querySelector(`[id="${id}"]`)
+            if (isFrHexColor&&isToHexColor) {
+              controlNode.querySelector('InputImage')?.remove()
+              const [rf, gf, bf] = hex2rgb(valueFrom).map(n=>n/255)
+              const [rt, gt, bt] = hex2rgb(valueTo).map(n=>n/255)
+              const colorNode = controlNode.querySelector('Color')
+              colorNode.setAttribute('red'  , rf + part*(rt - rf))
+              colorNode.setAttribute('green', gf + part*(gt - gf))
+              colorNode.setAttribute('blue' , bf + part*(bt - bf))
+            } else if (image) {
+              const imageNode = controlNode.querySelector('InputImage')||xml.createElement('InputImage')
+              imageNode.setAttribute('value', image.name)
+              controlNode.appendChild(imageNode)
+            }
           }
         }
       })
