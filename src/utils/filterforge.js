@@ -26,6 +26,54 @@ export const fileType = {
   ,PNG: 'image/png'
 }
 
+export const targetType = {
+  BMP: 'text/xml-filterforge-filter'
+  ,JPG: 'text/xml'
+  ,TIF: 'image/jpeg'
+  ,TGA: 'image/gif'
+  ,PNG: 'image/png'
+  ,EXR: 'image/png'
+  ,PFM: 'image/png'
+}
+
+
+/*
+*
+            <DefaultFormat value="JPG"/>
+            <BMP>
+                <BitDepth value="32"/>
+                <FlipRowOrder value="false"/>
+            </BMP>
+            <JPG>
+                <Quality value="98"/>
+                <FullPrecision value="true"/>
+            </JPG>
+            <TIF>
+                <BitDepth value="8"/>
+                <FloatFormat value="false"/>
+                <IncludeTransparency value="true"/>
+                <ImageCompression value="LZW"/>
+            </TIF>
+            <TGA>
+                <BitDepth value="32"/>
+                <IncludeTransparency value="true"/>
+                <FlipRowOrder value="false"/>
+            </TGA>
+            <PNG>
+                <BitDepth value="16"/>
+                <IncludeTransparency value="true"/>
+                <ImageCompression value="BEST"/>
+            </PNG>
+            <EXR>
+                <BitDepth value="32"/>
+                <IncludeTransparency value="true"/>
+                <ImageCompression value="PIZ"/>
+                <FlipRowOrder value="false"/>
+            </EXR>
+            <PFM/>
+*
+* */
+
 export const controlType = {
   ColorMapControl: 'ColorMapControl'
 }
@@ -75,8 +123,8 @@ const cloneTo = (node, nodeName) => {
   return ffPreset
 }
 
-export const downloadZip = (filter, controls, filterName, size, frames, channelValues, renderer, images, animation=true) =>{
-  // console.log('downloadZip',{filter, controls, filterName, size, frames, channelValues, animation}) // todo: remove log
+export const downloadZip = (filter, controls, filterName, size, frames, channelValues, renderer, images, image, fileType, animation=true) =>{
+  console.log('downloadZip',{filter, controls, filterName, size, frames, channelValues, renderer, images, image, fileType, animation}) // todo: remove log
   const name = filterName.toLowerCase().replace(/[^a-z]/g, '-').replace(/^-|-$/g, '')
   const fileName = `ffbatch_${name}`
   const fileNameFFXML = `${fileName}.ffxml`
@@ -84,6 +132,8 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
   const fileNameBat = `${fileName}.bat`
   const fileNameSh = `${fileName}.sh`
   const fileNameZip = `${fileName}.zip`
+  //
+  const extension = fileType.toLowerCase()
   //
   const imageMap = new Map()
   const inputImage = images.find(img=>img.id==='input-image')
@@ -111,6 +161,7 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
   const xml = parseXMLString(tasks)
   const xmlRoot = xml.documentElement
   const xmlTask = xmlRoot.querySelector('Task')
+  xmlTask.querySelector('Result').setAttribute('format', fileType)
   xmlTask.remove()
   const xmlTaskImage = xmlTask.querySelector('Image')
   xmlTaskImage.setAttribute('width', size.width)
@@ -124,7 +175,7 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
       // FFXML
       controls.forEach(control=>{
         const {id, value:valueFrom, valueTo} = control
-        if (valueFrom!==valueTo) {
+        if (valueFrom!==valueTo || true) { // todo remove || true
           if ([Number,Range].includes(control.Input)) {
             // todo valueFrom and valueTo should be number here
             const valueF = parseFloat(valueFrom)
@@ -161,7 +212,7 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
       ffxmlPresets.appendChild(preset)
       // XML
       const task = xmlTask.cloneNode(true)
-      const path = `${fileName}_${(i+1).toString().padStart(digits, '0')}.jpg`
+      const path = `${fileName}_${(i+1).toString().padStart(digits, '0')}.${extension}`
       task.querySelector('Result').setAttribute('path', path)
       task.querySelector('Filter').setAttribute('value', fileNameFFXML)
       task.querySelector('Preset').setAttribute('value', i+1)
@@ -186,7 +237,7 @@ export const downloadZip = (filter, controls, filterName, size, frames, channelV
           // XML
           const task = xmlTask.cloneNode(true)
           const slug = name.toLowerCase().replace(/-/g,'-')
-          const path = `${fileName}_${presetNr}_${slug}.jpg`
+          const path = `${fileName}_${presetNr}_${slug}.${extension}`
           task.querySelector('Result').setAttribute('path', path)
           task.querySelector('Filter').setAttribute('value', fileNameFFXML)
           task.querySelector('Preset').setAttribute('value', presetIndex)

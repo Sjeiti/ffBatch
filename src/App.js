@@ -3,7 +3,7 @@ import {hot} from 'react-hot-loader'
 import {useDropzone} from 'react-dropzone'
 import {parseXMLString} from './utils'
 import {
-  channels as channelsList,controlType,defaultStorage,downloadZip,fileType,getControlsProps,getSettingsProps
+  channels as channelsList,controlType,defaultStorage,downloadZip,fileType,getControlsProps,getSettingsProps,targetType
 } from './utils/filterforge'
 import {Tab} from './components/Tab'
 import {Layout} from './components/Layout'
@@ -38,6 +38,7 @@ export const App = hot(module)(() => {
   const [images, setImages] = useState([])
 
   const [image, setImage] = useState('')
+  const [fileType, setFileType] = useState('JPG')
 
   useEffect(()=>{
     localStorage.ffbatch = JSON.stringify({size,frames,renderer})
@@ -156,12 +157,12 @@ export const App = hot(module)(() => {
 
   const onDownloadButtonAnimationClick = e=>{
     e.preventDefault()
-    downloadZip(filter, controls, filterName, size, frames, channels, renderer, images, image)
+    downloadZip(filter, controls, filterName, size, frames, channels, renderer, images, image, fileType)
   }
 
   const onDownloadButtonPresetsClick = e=>{
     e.preventDefault()
-    downloadZip(filter, controls, filterName, size, frames, channels, renderer, images, image, false)
+    downloadZip(filter, controls, filterName, size, frames, channels, renderer, images, image, fileType, false)
   }
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -195,15 +196,13 @@ export const App = hot(module)(() => {
         <Select id="filter-preset" value={filterPreset} onChange={onFilterPresetChange} options={presets.map(({nodeName},i)=>({
           value: i
           ,key: i
-          ,text: nodeName+(nodeName==='DefaultPreset'?'':' '+i)}))
-        }/>
+          ,text: nodeName+(nodeName==='DefaultPreset'?'':' '+i)
+        }))}/>
       </InputRow>
-
       <InputRow title="input image">
           <Text id="input-image" value={image} onChange={e=>setImage(e.target.value)} />
           {image&& <img src={images.find(img=>img.name===image)?.data} alt="input image" style={{height:'2.375rem',boxShadow:'0 0 0.25rem rgba(0,0,0,0.3)'}} />}
       </InputRow>
-
       <InputRow title="size">
         <Number id="imageWidth" value={size.width} min={2**4} max={2**13} onChange={e=>setSize({...size, width: parseInt(e.target.value, 10)})} />
         <Number id="imageHeight" value={size.height} min={2**4} max={2**13} onChange={e=>setSize({...size, height: parseInt(e.target.value, 10)})} />
@@ -211,6 +210,18 @@ export const App = hot(module)(() => {
       <InputRow title="frames">
         <Number id="frames" value={frames} min={2**2} max={2**11} onChange={e=>setFrames(parseInt(e.target.value, 10))} />
       </InputRow>
+
+
+      <InputRow title="fileType">
+        <Select id="fileType" value={fileType} onChange={e=>setFileType(e.target.value)} options={Object.entries(targetType).map(([key,value],i)=>({
+          value: key
+          ,key
+          ,text: key
+        }))} />
+        <span>{fileType}</span>
+      </InputRow>
+
+
       <InputRow title="renderer">
         <Text id="renderer" value={renderer} onChange={e=>setRenderer(e.target.value)} />
       </InputRow>
