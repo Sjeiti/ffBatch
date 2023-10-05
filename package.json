@@ -33,7 +33,7 @@
     "chokidar-cli": "^2.0.0",
     "commander": "^3.0.0",
     "copy-webpack-plugin": "^6.0.3",
-    "css-loader": "^4.2.1",
+    "css-loader": "^6.8.1",
     "del-cli": "^3.0.1",
     "eslint": "^7.6.0",
     "eslint-plugin-flowtype": "^5.2.0",
